@@ -1,4 +1,4 @@
 class SupportController < ApplicationController
-	def user_support
+	def help
 	end
 end

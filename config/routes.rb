@@ -2,7 +2,7 @@ IbabaiApp::Application.routes.draw do
 
   get "users/new"
   match "/signup", to: "users#new", via: "get"
-  match "/user_support", to: "support#user_support", via: "get"
+  match "/help", to: "support#help", via: "get"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
