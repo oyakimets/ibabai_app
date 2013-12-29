@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	belongs_to :client
 	before_save { self.email = email.downcase }
 	validates :name, presence: true
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -8,7 +9,7 @@ class User < ActiveRecord::Base
 	VALID_TEL_REGEX = /\d{12}/
 	validates :tel1, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }
 	validates :tel2, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }
-	validates :company, presence: true
+	validates :client_id, presence: true
 end
 
 

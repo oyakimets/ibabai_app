@@ -3,14 +3,14 @@ require 'spec_helper'
 describe User do
   
   before do
-   @user = User.new(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", company: "ibabai", tel1: "123456789012", tel2: "123456789098") 
+   @user = User.new(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: 1, tel1: "123456789012", tel2: "123456789098") 
   end
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
-  it { should respond_to(:company) }
+  it { should respond_to(:client_id) }
   it { should respond_to(:tel1) }
   it { should respond_to(:tel2) }
   it { should respond_to(:password) }
@@ -50,7 +50,7 @@ describe User do
 
   describe "when password is blank" do
     before do
-      @user = User.new(name: "Me", email: "me@oleg.com", password: " ", password_confirmation: " ", company: "ibabai", tel1: "123456789012", tel2: "123456789098") 
+      @user = User.new(name: "Me", email: "me@oleg.com", password: " ", password_confirmation: " ", client_id: 1, tel1: "123456789012", tel2: "123456789098") 
     end
     it { should_not be_valid }
   end
@@ -88,7 +88,7 @@ describe User do
     it { should_not be_valid }
   end
   describe "when company is not present" do
-    before { @user.company = " " }
+    before { @user.client_id = nil }
     it { should_not be_valid }
   end
 

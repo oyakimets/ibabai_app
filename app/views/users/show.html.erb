@@ -1,0 +1,11 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+	<aside class="col-md-4">
+		<section>
+			<h1><%= @user.name %></h1>
+			<span>Company: <%= @client.name %></span><br>
+			<span><%= @user.email %></span><br>
+			<span>phones: <%= @user.tel1 %>, <%= @user.tel2 %></span>
+		</section>
+	</aside>
+</div>
