@@ -2,7 +2,7 @@
 	<div class="navbar-inner">
 		<nav>
 			<ul class="nav navbar-nav navbar-left">
-				<li><%= link_to "Status", '#' %></li>
+				<li><%= link_to "Status", actions_path %></li>
 				<li><%= link_to "Segments", '#' %></li>
 				<li><%= link_to "Retail", '#' %></li>
 				<li><%= link_to "Analitics", '#' %></li>
@@ -12,7 +12,7 @@
 			</ul>
 			<ul class = "nav navbar-nav navbar-right">
 				<li><%= link_to "Profile", '#' %></li>
-				<li><%= link_to "SignOut", '#' %></li>
+				<li><%= link_to "SignOut", signout_path, method: "delete" %></li>
 			</ul>
 		</nav>
 	</div>

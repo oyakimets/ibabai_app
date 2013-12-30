@@ -89,6 +89,12 @@ input {
 	@extend .error;
 }
 
+.alert-error {
+	color: #f00;
+	font-size: 1.4em;
+	text-align: center;
+}
+
 /* miscellaneous */
 
 .debug_dump {
