@@ -1,5 +1,5 @@
 class ActionsController < ApplicationController
-	before_action :login   
+	before_action :signed_in_user   
 	
 	def index
 	end
@@ -18,9 +18,8 @@ class ActionsController < ApplicationController
 
 	private
 
-  		def login
-  			unless signed_in?
-  				redirect_to signin_url
-  			end
+  		def signed_in_user
+  			redirect_to signin_url   unless signed_in?
+  			  			
   		end
 end

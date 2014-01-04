@@ -4,6 +4,7 @@ describe User do
   
   before do
    @user = User.new(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: 1, tel1: "123456789012", tel2: "123456789098") 
+
   end
   subject { @user }
 
@@ -17,8 +18,16 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:pas_reset_token) }
+  it { should respond_to(:pas_reset_sent_at) }
 
   it { should be_valid }
+
+  describe "password reset" do
+    before { @user.send_password_reset }
+    its(:pas_reset_token) { should_not be_blank }
+    its(:pas_reset_sent_at) { should_not be_blank }
+  end
 
   describe "remember token" do
     before { @user.save }

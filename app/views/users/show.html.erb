@@ -5,7 +5,8 @@
 			<h1><%= @user.name %></h1>
 			<span>Company: <%= @client.name %></span><br>
 			<span><%= @user.email %></span><br>
-			<span>phones: <%= @user.tel1 %>, <%= @user.tel2 %></span>
+			<span>phones: <%= @user.tel1 %>, <%= @user.tel2 %></span><br>
+			<%= link_to "change", edit_user_path(current_user) %>
 		</section>
 	</aside>
 </div>

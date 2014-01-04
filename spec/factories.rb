@@ -7,6 +7,8 @@ FactoryGirl.define do
 		tel2 "123456789034"
 		password "foobar"
 		password_confirmation "foobar"
+		pas_reset_token "12345"
+		pas_reset_sent_at Time.zone.now
 		client
 	end
 

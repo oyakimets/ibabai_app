@@ -1,7 +1,9 @@
 IbabaiApp::Application.routes.draw do
+  
   resources :users
   resources :actions
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
   root 'actions#index'
   match "/signin", to: "sessions#new", via: "get"
   match "/signup", to: "users#new", via: "get"

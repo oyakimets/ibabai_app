@@ -6,10 +6,14 @@ describe "User pages" do
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
 		let(:client) { FactoryGirl.create(:client) }
-		before { visit user_path(user) }
+		before do
+			sign_in user
+			visit user_path(user)
+		end
 
 		it { should have_content(user.name) }
 		it { should have_title("ibabai | #{user.name}") }
+		it { should have_link("change") }
 	end
 
 	describe "signup page" do
@@ -43,6 +47,41 @@ describe "User pages" do
 			it "should create a user" do
 				expect { click_button submit }.to change(User, :count).by(1)
 			end
+		end
+	end
+
+	describe "edit" do
+		let(:user) { FactoryGirl.create(:user) }
+		before do
+			sign_in user
+			visit edit_user_path(user)
+		end
+
+		describe "page" do
+			it { should have_content("Update your profile") }
+			it { should have_title("ibabai | update") }
+			
+		end
+
+		describe "with invalid information" do
+			before { click_button "Save changes" }
+			it { should have_content('error') }
+		end
+
+		describe "with valid information" do
+			let(:new_name) { "password" }
+			let(:new_phone) { "000111222333"}
+			before do
+				fill_in "name", with: new_name
+				fill_in "phone", with: new_phone
+				fill_in "password", with: user.password
+				fill_in "confirmation", with: user.password
+				click_button "Save changes"
+			end
+			it { should have_title("ibabai | status") }
+			it { should have_selector('div.alert.alert-success') }
+			specify { expect(user.reload.name).to eq new_name }
+			specify { expect(user.reload.tel1).to eq new_phone }
 		end
 	end
  end

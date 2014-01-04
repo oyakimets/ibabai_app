@@ -11,7 +11,7 @@
 				<li><%= link_to "New User", signup_path %></li>
 			</ul>
 			<ul class = "nav navbar-nav navbar-right">
-				<li><%= link_to "Profile", '#' %></li>
+				<li><%= link_to "Profile", current_user %></li>
 				<li><%= link_to "SignOut", signout_path, method: "delete" %></li>
 			</ul>
 		</nav>

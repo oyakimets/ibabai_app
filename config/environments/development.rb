@@ -14,7 +14,7 @@ IbabaiApp::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -25,5 +25,19 @@ IbabaiApp::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
+  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default charset: "utf-8"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:   "smtp.gmail.com",
+    domain:    "gmail.com",
+    port:       587,
+    user_name: 'oleg.yakimets@gmail.com',
+    password:  'iranal01',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   config.assets.debug = true
 end
