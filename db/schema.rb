@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231102833) do
+ActiveRecord::Schema.define(version: 20140104183630) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131231102833) do
     t.string   "remember_token"
     t.string   "pas_reset_token"
     t.datetime "pas_reset_sent_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

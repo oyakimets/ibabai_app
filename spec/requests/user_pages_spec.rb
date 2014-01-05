@@ -3,6 +3,27 @@ require 'spec_helper'
 describe "User pages" do
 	subject { page }
 
+	describe "'NEW' links" do
+		let(:user) { FactoryGirl.create(:user) }
+		let(:admin) { FactoryGirl.create(:user, admin: true) }
+
+		describe "as non-admin user" do
+			before { sign_in user }
+
+			it { should have_link("New Action") }
+			it { should_not have_link("New User") }
+		end
+
+		describe "as admin user" do
+			before { sign_in admin }
+
+			it { should have_link("New User") }
+			it { should_not have_link("New Action") }
+		end
+	end
+
+
+
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
 		let(:client) { FactoryGirl.create(:client) }
@@ -17,7 +38,11 @@ describe "User pages" do
 	end
 
 	describe "signup page" do
-		before { visit signup_path }
+		let(:user) { FactoryGirl.create(:user, admin: true) }
+		before do
+			sign_in user
+			visit signup_path
+		end
 
 		it { should have_content('Sign up') }
 		it { should have_title('ibabai | signup')}

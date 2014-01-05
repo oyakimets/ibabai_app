@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]  
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: [:new, :create]
+    
   def show  	
   	@user = User.find(params[:id])
   	@client = Client.find_by(id: @user.client_id)
@@ -13,9 +15,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-      sign_in @user
+      @user.send_password_reset 
       flash[:success] = "The new user was created."
-      redirect_to @user
+      redirect_to root_url
   	else
   		render 'new'
   	end
@@ -43,5 +45,9 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to(signout_url) unless current_user.admin?
     end
 end

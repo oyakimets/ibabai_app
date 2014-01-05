@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+  add_template_helper(UsersHelper)	
+
   default from: "noreply@ibabai.com"
 
   def password_reset(user)
@@ -6,4 +8,6 @@ class UserMailer < ActionMailer::Base
   		mail to: user.email, subject: "Password Reset"
   		
   end
+    
 end
+

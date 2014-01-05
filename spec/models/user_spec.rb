@@ -20,8 +20,19 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:pas_reset_token) }
   it { should respond_to(:pas_reset_sent_at) }
+  it { should respond_to(:admin) }
 
   it { should be_valid }
+  it { should_not be_admin }
+
+  describe "with admin attr set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "password reset" do
     before { @user.send_password_reset }
