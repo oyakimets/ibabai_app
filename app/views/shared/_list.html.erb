@@ -1,0 +1,5 @@
+<% if @list_items.any? %>
+	<ol class="brands">
+		<%= render partial: 'shared/list_item', collection: @list_items %>
+	</ol>
+<% end %>

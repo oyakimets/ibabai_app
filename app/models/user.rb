@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-	belongs_to :client
+	belongs_to :account
+	has_many :brands
+	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	validates :name, presence: true
@@ -27,7 +29,10 @@ class User < ActiveRecord::Base
 		UserMailer.password_reset(self).deliver
 	end
 
-	
+	def list
+		Brand.where("user_id = ? AND dropped IS ?", id, nil)
+	end	
+
 	private
 
 		def create_remember_token

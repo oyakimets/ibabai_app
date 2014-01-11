@@ -3,42 +3,95 @@ require 'spec_helper'
 describe "User pages" do
 	subject { page }
 
-	describe "'NEW' links" do
+	describe "profile page" do
+		let(:client) { FactoryGirl.create(:client) }
+		let(:user) { FactoryGirl.create(:user, client_id: client.id) }
+		let(:other_user) { FactoryGirl.create(:user, client_id: client.id) }
+		before do
+			FactoryGirl.create(:brand, user: user, name: "Lorem")
+			FactoryGirl.create(:brand, user: user, name: "Ipsum")
+			FactoryGirl.create(:brand, user: other_user, name: "Brand")
+			sign_in user
+			visit user_path(user)
+
+		end
+
+		it { should have_content("Lorem") }
+		it { should have_content("Ipsum") }
+		it { should_not have_content("Brand") }
+	end
+
+	describe "dropping the brand" do
+		let(:client) { FactoryGirl.create(:client) }
+		let(:user) { FactoryGirl.create(:user, client_id: client.id) }
+    	before do
+    		FactoryGirl.create(:brand, user: user, name: "Droppable") 
+    		sign_in user
+			visit user_path(user)
+			click_link "drop"
+		end
+
+		it { should_not have_content("Droppable") } 
+	end
+	
+	
+	describe "admin page for users" do
+		let(:client) { FactoryGirl.create(:client) }		
+		let(:a_user) { FactoryGirl.create(:user, admin: true, client_id: client.id) } 
+		let(:account1) { FactoryGirl.create(:account, email: a_user.email) }
+		let(:account2) { FactoryGirl.create(:account, email: "boo@ibabai.com") }
+		let!(:user1) { FactoryGirl.create(:user, account: account1) }
+		let!(:user2) { FactoryGirl.create(:user, account: account1) }
+		let!(:user3) { FactoryGirl.create(:user, account: account2) }
+
+		before do
+			sign_in a_user			
+			visit users_path
+		end
+
+		it { should have_content(a_user.name) }
+		it { should have_title("ibabai | my users") }
+		it { should have_link("change") }
+
+		describe "account's users" do
+			it { should have_content('My users') }
+			it { should have_content(user1.email) }
+			it { should have_content(user2.email) }
+			it { should_not have_content(user3.email) }
+		end
+	end
+		
+	
+	describe " customized links for admin" do
 		let(:user) { FactoryGirl.create(:user) }
-		let(:admin) { FactoryGirl.create(:user, admin: true) }
+		let(:a_user) { FactoryGirl.create(:user, admin: true) }
 
 		describe "as non-admin user" do
 			before { sign_in user }
 
 			it { should have_link("New Action") }
 			it { should_not have_link("New User") }
+			it { should have_link("Profile") }
+			it { should_not have_link("My users") }
 		end
 
 		describe "as admin user" do
-			before { sign_in admin }
+			before { sign_in a_user }
 
 			it { should have_link("New User") }
 			it { should_not have_link("New Action") }
+			it { should_not have_link("Profile") }
+			it { should have_link("My users") }
 		end
 	end
-
-
-
-	describe "profile page" do
-		let(:user) { FactoryGirl.create(:user) }
-		let(:client) { FactoryGirl.create(:client) }
-		before do
-			sign_in user
-			visit user_path(user)
-		end
-
-		it { should have_content(user.name) }
-		it { should have_title("ibabai | #{user.name}") }
-		it { should have_link("change") }
-	end
+	
 
 	describe "signup page" do
+
 		let(:user) { FactoryGirl.create(:user, admin: true) }
+		let(:account) { FactoryGirl.create(:account, email: user.email) }
+		
+		
 		before do
 			sign_in user
 			visit signup_path
@@ -57,7 +110,7 @@ describe "User pages" do
 		end
 
 		describe "with valid information" do
-			let!(:client) { FactoryGirl.create(:client) }
+			
 			before do
 				
 				fill_in "name", with: "Oleg Ya"

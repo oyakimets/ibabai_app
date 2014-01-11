@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104183630) do
+ActiveRecord::Schema.define(version: 20140106160039) do
+
+  create_table "accounts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "prodcat_id"
+    t.boolean  "dropped"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brands", ["name"], name: "index_brands_on_name", unique: true
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -19,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140104183630) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "clients", ["name"], name: "index_clients_on_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -33,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140104183630) do
     t.string   "pas_reset_token"
     t.datetime "pas_reset_sent_at"
     t.boolean  "admin"
+    t.integer  "account_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

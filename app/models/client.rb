@@ -1,5 +1,4 @@
 class Client < ActiveRecord::Base
-	has_many :users
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 	validates :contacts, presence: true
 end

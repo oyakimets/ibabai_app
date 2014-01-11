@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe User do
-  
-  before do
-   @user = User.new(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: 1, tel1: "123456789012", tel2: "123456789098") 
-
-  end
+  let(:account) { FactoryGirl.create(:account) }
+  before { @user = account.users.build(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: 1, tel1: "123456789012", tel2: "123456789098") }
+   
   subject { @user }
 
   it { should respond_to(:name) }
@@ -20,11 +18,30 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:pas_reset_token) }
   it { should respond_to(:pas_reset_sent_at) }
+  it { should respond_to(:brands) }
+  it { should respond_to(:list) }
   it { should respond_to(:admin) }
+  it { should respond_to(:account_id) }
+  it { should respond_to(:account) }
+  its(:account) { should eq account }
 
   it { should be_valid }
   it { should_not be_admin }
 
+  describe "brand associations" do
+    before { @user.save }
+    let!(:older_brand) do
+      FactoryGirl.create(:brand, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_brand) do
+      FactoryGirl.create(:brand, name: "popilol", user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have right brands in right order" do
+      expect(@user.brands.to_a).to eq [newer_brand, older_brand]
+    end    
+  end
+  
   describe "with admin attr set to 'true'" do
     before do
       @user.save!

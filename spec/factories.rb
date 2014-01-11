@@ -1,7 +1,7 @@
 FactoryGirl.define do
 	factory :user do
-		name "Me Le"
-		email "me@ibabai.com"
+		sequence(:name) { |n| "alibaba #{n}" }
+		sequence(:email) { |n| "ali_#{n}@ibabai.com" }
 		client_id 1
 		tel1 "123456789012"
 		tel2 "123456789034"
@@ -9,11 +9,23 @@ FactoryGirl.define do
 		password_confirmation "foobar"
 		pas_reset_token "12345"
 		pas_reset_sent_at Time.zone.now
-		client
+		account			
+			
 	end
 
 	factory :client do
-		name "Elefant"
+		sequence(:name) { |n| "Elefant_#{n}" }
 		contacts "These are contacts for LLC Elefant"
+	end
+
+	factory :account do
+		name "Le Me"
+		email "acc@ibabai.com"
+	end
+
+	factory :brand do
+		sequence(:name) { |n| "Lolipop_#{n}" }
+		prodcat_id 1
+		user
 	end
 end

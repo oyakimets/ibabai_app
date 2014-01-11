@@ -1,0 +1,21 @@
+<% provide(:title, "my users") %>
+<div class="row">
+	<aside class="col-md-4">
+		<section>
+			<%= render "shared/user_info" %>
+		</section>
+	</aside>
+	<div class="col-md-8" id="my-users">
+		<h3>My users</h3>
+		<ul class="users">
+			<% @users.each do |user| %>
+			<li>
+				<h4><%= user.name %></h4><br>
+				<span>Company: <%= Client.find_by(id: user.client_id).name %></span><br>
+				<span><%= user.email %></span><br>
+				<span>phones: <%= user.tel1 %>, <%= user.tel2 %></span>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

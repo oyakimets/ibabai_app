@@ -1,5 +1,7 @@
 IbabaiApp::Application.routes.draw do
   
+  resources :accounts, only: :show
+  resources :brands, only: [:create, :update, :destroy]
   resources :users
   resources :actions
   resources :sessions, only: [:new, :create, :destroy]

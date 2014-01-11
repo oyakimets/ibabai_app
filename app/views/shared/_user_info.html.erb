@@ -1,0 +1,5 @@
+<h4><%= current_user.name %></h4><br>
+<span>Company: <%= user_client.name %></span><br>
+<span><%= current_user.email %></span><br>
+<span>phones: <%= current_user.tel1 %>, <%= current_user.tel2 %></span><br>
+<%= link_to "change", edit_user_path(current_user) %>

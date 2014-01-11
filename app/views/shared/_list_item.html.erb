@@ -1,0 +1,8 @@
+
+<li id="<%= list_item.id %>">
+	<span class="brand-name"><%= list_item.name %></span><br>
+	<span class="timestamp"><%= list_item.created_at.strftime("Listed on %d/%m/%Y") %></span><br>
+	<% if current_user?(list_item.user) %>
+		<%= link_to "drop", list_item, method: :patch, data: { confirm: "Are you sure?"}, title: list_item.name %>
+	<% end %>
+</li>

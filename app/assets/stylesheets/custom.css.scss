@@ -94,7 +94,47 @@ input {
 	font-size: 1.4em;
 	text-align: center;
 }
-/*
+/* users index */
+#my-users {
+	h3 {
+		padding-left: 35px;
+	}
+	.users {
+		list-style: none;
+		margin: 0;
+		li {
+			overflow: auto;
+			padding: 10px 0;
+			border-top: 1px solid $grayLight;
+			&:last-child {
+				border-bottom: 1px solid $grayLight;
+			}
+		}
+	}
+}
+/*brand list */
+#my-brands {
+	h3 {
+		padding-left: 35px;
+	}
+	.brands {
+		list-style: none;
+		margin: 10px 0 0 0;
+
+		li {
+			padding: 10px 0;
+			border-top: 1px solid #e8e8e8;
+		}
+	}
+	.timestamp {
+		color: $grayLight;
+	}
+}
+
+.brand-form {
+	width: 200px;
+}
+
 
 /* miscellaneous */
 

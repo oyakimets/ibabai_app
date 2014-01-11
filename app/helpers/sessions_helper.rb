@@ -30,5 +30,11 @@ module SessionsHelper
 		self.current_user = nil
 	end
 
+	def user_account
+		@account ||= Account.find_by(email: current_user.email)
+	end
 		
+	def user_client
+		@user_client ||= Client.find_by(id: current_user.client_id)
+	end
 end

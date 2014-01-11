@@ -1,25 +1,29 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:new, :create]
-    
+  before_action :admin_user, only: [:new, :create, :index]
+
+  def index
+    @users = user_account.user_list    
+  end
+        
   def show  	
   	@user = User.find(params[:id])
-  	@client = Client.find_by(id: @user.client_id)
+    @brand = current_user.brands.build
+  	@list_items = current_user.list   
   end
   
   def new
-  	@user = User.new
-  	
+  	@user = User.new  	
   end
 
   def create
-  	@user = User.new(user_params)
+  	@user = user_account.users.build(user_params)
   	if @user.save
-      @user.send_password_reset 
+      @user.send_password_reset    
       flash[:success] = "The new user was created."
       redirect_to root_url
   	else
-  		render 'new'
+      render 'new'
   	end
   end
 
@@ -29,13 +33,12 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated!"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       render 'edit'
     end
   end
-
-
+  
   private 
 
   	def user_params
@@ -50,4 +53,6 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(signout_url) unless current_user.admin?
     end
+
+       
 end
