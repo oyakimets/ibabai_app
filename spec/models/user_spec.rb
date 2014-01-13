@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe User do
+  let(:client) { FactoryGirl.create(:client)}
   let(:account) { FactoryGirl.create(:account) }
-  before { @user = account.users.build(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: 1, tel1: "123456789012", tel2: "123456789098") }
+  before { @user = account.users.build(name: "Me", email: "me@oleg.com", password: "foobar", password_confirmation: "foobar", client_id: client.id, tel1: "123456789012", tel2: "123456789098") }
    
   subject { @user }
 
@@ -24,6 +25,8 @@ describe User do
   it { should respond_to(:account_id) }
   it { should respond_to(:account) }
   its(:account) { should eq account }
+  it { should respond_to(:client) }
+  its(:client) { should eq client }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -132,6 +135,11 @@ describe User do
   end
   describe "when company is not present" do
     before { @user.client_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when account is not present" do
+    before { @user.account_id = nil }
     it { should_not be_valid }
   end
 

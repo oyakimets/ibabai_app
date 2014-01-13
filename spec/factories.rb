@@ -28,4 +28,15 @@ FactoryGirl.define do
 		prodcat_id 1
 		user
 	end
+
+	factory :action do
+		sequence(:name) { |n| "Action_#{n}" }
+		brand_id 1
+		start Time.zone.now + 7.days
+		brand
+	end
+
+	factory :prodcat do
+		sequence(:name) { |n| "Prodcat_#{n}" }
+	end
 end

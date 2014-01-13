@@ -4,5 +4,8 @@
 	<%= f.label :name, "Add new brand." %>
 	<%= f.text_field :name %>
 
+	<%= f.label :prodcat_id, "product category" %>
+	<%= f.collection_select(:prodcat_id, Prodcat.all, :id, :name, prompt: true) %>
+
 	<%= f.submit "Add", class: "btn btn-lg btn-primary" %>
 <% end %>

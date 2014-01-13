@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	belongs_to :account
+	belongs_to :client
 	has_many :brands
+	has_many :actions, through: :brands
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
 	validates :tel1, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }
 	validates :tel2, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }
 	validates :client_id, presence: true
+	validates :account_id, presence: true
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
