@@ -37,4 +37,6 @@ module SessionsHelper
 	def user_client
 		@user_client ||= Client.find_by(id: current_user.client_id)
 	end
+
+	
 end

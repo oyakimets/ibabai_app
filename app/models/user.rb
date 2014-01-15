@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	belongs_to :account
 	belongs_to :client
 	has_many :brands
+	has_many :segments
 	has_many :actions, through: :brands
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
@@ -34,6 +35,10 @@ class User < ActiveRecord::Base
 
 	def list
 		Brand.where("user_id = ? AND dropped IS ?", id, nil)
+	end
+
+	def seg_list
+		Segment.where("user_id = ? AND dropped IS ?", id, nil)
 	end	
 
 	private

@@ -135,6 +135,21 @@ input {
 	width: 200px;
 }
 
+/* segments */
+#my-segments {
+	h3 {
+		padding-left: 50px;
+	}
+	.segments {
+		list-style: none;
+	}
+
+	.timestamp {
+		color: $grayLight;
+	}
+}
+
+
 
 /* miscellaneous */
 

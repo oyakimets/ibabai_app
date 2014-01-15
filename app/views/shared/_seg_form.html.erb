@@ -1,0 +1,38 @@
+<%= form_for(@segment) do |f| %>
+	<%= render 'shared/error_msg', object: f.object %>
+	<%= f.label :name, "segment name" %>
+	<%= f.text_field :name, placeholder: "segment name" %>
+	<section>
+		<div class="col-md-8">
+			<%= f.label :gender, "gender" %>
+		</div>
+		<div class="col-md-4">
+			<%= f.select :gender, %w[male female], include_blank: "all" %>
+		</div>
+	</section>
+	<section>
+		<div class="col-md-8">
+			<%= f.label :age_min, "from age" %>
+		</div>
+		<div class="col-md-4">
+			<%= f.select :age_min, (16..60), include_blank: "minus" %>
+		</div>
+	</section>
+	<section>
+		<div class="col-md-8">
+			<%= f.label :age_max, "to age" %>
+		</div>
+		<div class="col-md-4">				
+			<%= f.select :age_max, (16..60), include_blank: "plus" %>
+		</div>
+	</section>
+	<section>
+		<div class="col-md-8">
+			<%= f.label :income, "income level" %>
+		</div>
+		<div class="col-md-4">
+			<%= f.select :income, %w[low mid high], include_blank: "all" %>
+			<%= f.submit "Save", class: "btn btn-lg btn-primary" %>
+		</div>
+	</section>
+<% end %>

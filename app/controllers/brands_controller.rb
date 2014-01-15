@@ -30,6 +30,6 @@ class BrandsController < ApplicationController
       def correct_user
         @brand = current_user.brands.find_by(id: params[:id])
         redirect_to user_url(current_user) if @brand.nil?
-      end
+     end     
 
 end

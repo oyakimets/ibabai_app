@@ -1,0 +1,5 @@
+<% if @seg_list_items.any? %>
+	<ol class="segments">
+		<%= render partial: 'shared/seg_list_item', collection: @seg_list_items %>
+	</ol>
+<% end %>

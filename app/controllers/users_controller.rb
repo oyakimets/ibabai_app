@@ -38,20 +38,25 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def cust_seg
+    @segment = current_user.segments.build
+    @seg_list_items = current_user.seg_list
+  end
   
   private 
 
   	def user_params
   		params.require(:user).permit(:name, :email, :tel1, :tel2, :client_id, :password, :password_confirmation)
   	end
+    
+    def admin_user
+      redirect_to(signout_url) unless current_user.admin?
+    end
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
-
-    def admin_user
-      redirect_to(signout_url) unless current_user.admin?
+      redirect_to(signout_url) unless current_user?(@user)
     end
 
        

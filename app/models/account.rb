@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
 	has_many :users
+	has_many :segments, through: :users
 	has_many :brands, through: :users
 	has_many :actions, through: :brands
 	validates :name, presence: true

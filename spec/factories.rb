@@ -39,4 +39,9 @@ FactoryGirl.define do
 	factory :prodcat do
 		sequence(:name) { |n| "Prodcat_#{n}" }
 	end
+
+	factory :segment do
+		sequence(:name) { |n| "Segment_#{n}" }
+		user
+	end
 end

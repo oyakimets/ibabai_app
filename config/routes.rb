@@ -1,5 +1,5 @@
 IbabaiApp::Application.routes.draw do
-  
+  resources :segments
   resources :accounts, only: :show
   resources :brands, only: [:create, :update, :destroy]
   resources :users
@@ -7,6 +7,7 @@ IbabaiApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   root 'actions#index'
+  match "/cust_seg", to: "users#cust_seg", via: "get"
   match "/signin", to: "sessions#new", via: "get"
   match "/signup", to: "users#new", via: "get"
   match "/help", to: "support#help", via: "get"
