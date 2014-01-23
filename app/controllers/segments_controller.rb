@@ -6,7 +6,8 @@ class SegmentsController < ApplicationController
 		if @segment.save
 			redirect_to cust_seg_url
 		else
-			render 'cust_seg'
+			@seg_list_items = []
+			render 'users/cust_seg'
 		end
 	end
 

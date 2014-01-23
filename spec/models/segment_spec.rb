@@ -10,9 +10,10 @@ describe Segment do
 	it { should respond_to(:gender) }
 	it { should respond_to(:age_max) }
 	it { should respond_to(:age_min) }
-	it { should respond_to(:segment_token) }
 	it { should respond_to(:user) }
 	its(:user) { should eq user }
+	it { should respond_to(:actsegments) }
+	it { should respond_to(:actions) }
 
 	it { should be_valid }
 
@@ -23,11 +24,6 @@ describe Segment do
 
 	describe "when user_id is not present" do
 		before { @segment.user_id = nil }
-		it { should_not be_valid }
-	end
-
-	describe "when segment_token is not present" do
-		before { @segment.segment_token = nil }
 		it { should_not be_valid }
 	end
 

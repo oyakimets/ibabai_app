@@ -149,7 +149,32 @@ input {
 	}
 }
 
+/* categories */
+#my-cats {
+	h3 {
+		padding-left: 50px;
+	}
+	.cats {
+		list-style: none;
+		}
 
+	.timestamp {
+		color: $grayLight;
+	}
+	.formats-list {
+		list-style: none;
+		padding-left: 0px;
+		
+	}
+	.chains-list {
+		list-style: none;
+		padding-left: 0px;
+	}
+
+	ol li {
+		padding-left: 0px;
+	}
+}
 
 /* miscellaneous */
 

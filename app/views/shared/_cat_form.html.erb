@@ -1,0 +1,31 @@
+<%= form_for(@category) do |f| %>
+	<%= render 'shared/error_msg', object: f.object %>
+	<%= f.text_field :name, placeholder: "trade category name" %>
+	<%= fields_for(@category.catforms.build) do |cf| %>	
+	<section>
+		<div class="col-md-6">
+			<%= cf.label :formats, "select formats" %>
+		</div>
+		<div class="col-md-6">
+			<%= collection_select(:formats, :id, Format.all, :id, :name, { include_blank: "all" }, { multiple: true }) %>
+		</div>
+	</section>
+	<% end %>
+	<%= fields_for(@category.catchains.build) do |cc| %>
+	<section>
+		<div class="col-md-6">
+			<%= cc.label :chains, "select chains" %>
+		</div>
+		<div class="col-md-6">				
+			<%= collection_select(:chains, :id, Chain.all, :id, :name, { include_blank: "all" }, { multiple: true }) %>
+		</div>
+	</section>
+	<% end %>
+	<section>
+		<div class="col-md-6">			
+		</div>
+		<div class="col-md-6">				
+			<%= f.submit "Save", class: "btn btn-lg btn-primary" %>
+		</div>
+	</section>	
+<% end %>

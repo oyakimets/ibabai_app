@@ -117,12 +117,12 @@ describe "User pages" do
 	
 
 	describe "signup page" do
-		let(:client) { FactoryGirl.create(:client) }
+		
 		let(:user) { FactoryGirl.create(:user, admin: true) }
-		let(:account) { FactoryGirl.create(:account, email: user.email) }
-		
-		
+				
 		before do
+			FactoryGirl.create(:account, email: user.email)
+			FactoryGirl.create(:client, name: "ABC")
 			sign_in user
 			visit signup_path
 		end
@@ -145,7 +145,7 @@ describe "User pages" do
 				
 				fill_in "name", with: "Oleg Ya"
 				fill_in "email", with: "oleg@ibabai.com"
-				select client.name, from: "company"
+				select "ABC", from: "company"
 				fill_in "phone", with: "123456789098"
 				fill_in "mobile", with: "123456789012"
 				fill_in "password", with: "foobar"

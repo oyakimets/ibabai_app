@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 	belongs_to :client
 	has_many :brands
 	has_many :segments
-	has_many :actions, through: :brands
+	has_many :actions
+	has_many :categories
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
@@ -39,7 +40,12 @@ class User < ActiveRecord::Base
 
 	def seg_list
 		Segment.where("user_id = ? AND dropped IS ?", id, nil)
+	end
+
+	def cat_list
+		Category.where("user_id = ? AND dropped IS ?", id, nil)
 	end	
+	
 
 	private
 

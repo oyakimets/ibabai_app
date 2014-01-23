@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Action do
   
-  let(:brand) { FactoryGirl.create(:brand, user_id: 1) }
-  before { @action = brand.actions.build(name: "Action1", start: Time.zone.now + 7.days, finish: Time.zone.now + 15.days) } 
+  let(:user) { FactoryGirl.create(:user, client_id: 1, account_id: 1) }
+  before { @action = user.actions.build(name: "Action1", start: Date.today + 7.days, finish: Date.today + 15.days, brand_id: 1) } 
 
   subject { @action }
 
@@ -11,8 +11,17 @@ describe Action do
   it { should respond_to(:start) }
   it { should respond_to(:finish) }
   it { should respond_to(:brand_id) }
-  it { should respond_to(:brand) }
-  its(:brand) { should eq brand }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:user) }
+  its(:user) { should eq user }
+  it { should respond_to(:chains) }
+  it { should respond_to(:actchains) }
+  it { should respond_to(:formats) }
+  it { should respond_to(:actformats) }
+  it { should respond_to(:actsegments) }
+  it { should respond_to(:segments) }
+  it { should respond_to(:actcities) }
+  it { should respond_to(:cities) }
 
   it { should be_valid }
 

@@ -4,14 +4,14 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li><%= link_to "Status", actions_path %></li>
 				<li><%= link_to "Segments", cust_seg_path %></li>
-				<li><%= link_to "Retail", '#' %></li>
+				<li><%= link_to "Retail", new_category_path %></li>
 				<li><%= link_to "Analitics", '#' %></li>
 				<li><%= link_to "Support", help_path %></li>
 				<li>
 					<% if current_user.admin? %>
 						<%= link_to "New User", signup_path %>
 					<% else %>
-						<%= link_to "New Action", '#' %>
+						<%= link_to "New Action", new_action_path %>
 					<% end %>
 				</li>
 			</ul>

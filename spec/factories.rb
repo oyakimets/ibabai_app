@@ -27,14 +27,7 @@ FactoryGirl.define do
 		sequence(:name) { |n| "Lolipop_#{n}" }
 		prodcat_id 1
 		user
-	end
-
-	factory :action do
-		sequence(:name) { |n| "Action_#{n}" }
-		brand_id 1
-		start Time.zone.now + 7.days
-		brand
-	end
+	end		
 
 	factory :prodcat do
 		sequence(:name) { |n| "Prodcat_#{n}" }
@@ -44,4 +37,30 @@ FactoryGirl.define do
 		sequence(:name) { |n| "Segment_#{n}" }
 		user
 	end
+
+	factory :category do
+		sequence(:name) { |n| "Category_#{n}" }
+		user
+	end
+
+	factory :format do
+		sequence(:name) { |n| "Format_#{n}" }
+	end
+
+	factory :chain do
+		sequence(:name) { |n| "Chain_#{n}" }
+	end
+
+	factory :action do
+		sequence(:name) { |n| "Action_#{n}" }
+		brand_id 1
+		user_id 1
+		start Date.today + 7.days
+	end
+
+	factory :city do
+		sequence(:name) { |n| "City_#{n}" }
+		population 500000
+	end
+
 end
