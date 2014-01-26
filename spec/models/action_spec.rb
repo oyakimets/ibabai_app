@@ -14,14 +14,14 @@ describe Action do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should eq user }
-  it { should respond_to(:chains) }
-  it { should respond_to(:actchains) }
-  it { should respond_to(:formats) }
-  it { should respond_to(:actformats) }
   it { should respond_to(:actsegments) }
   it { should respond_to(:segments) }
   it { should respond_to(:actcities) }
   it { should respond_to(:cities) }
+  it { should respond_to(:categories) }
+  it { should respond_to(:actcats) }
+  it { should respond_to(:actfeedbacks) }
+  it { should respond_to(:feedbacks) }
 
   it { should be_valid }
 

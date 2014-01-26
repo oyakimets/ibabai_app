@@ -1,14 +1,14 @@
 IbabaiApp::Application.routes.draw do
-  resources :actions
   resources :categories
   resources :segments
   resources :accounts, only: :show
   resources :brands, only: [:create, :update, :destroy]
   resources :users
-  resources :actions
+  resources :promoacts
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
-  root 'actions#index'
+  
+  root 'promoacts#index'
   match "/cust_seg", to: "users#cust_seg", via: "get"
   match "/signin", to: "sessions#new", via: "get"
   match "/signup", to: "users#new", via: "get"

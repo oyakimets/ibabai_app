@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	belongs_to :client
 	has_many :brands
 	has_many :segments
-	has_many :actions
+	has_many :promoacts
 	has_many :categories
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }

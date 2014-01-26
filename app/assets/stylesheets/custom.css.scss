@@ -151,9 +151,7 @@ input {
 
 /* categories */
 #my-cats {
-	h3 {
-		padding-left: 50px;
-	}
+	
 	.cats {
 		list-style: none;
 		}
@@ -175,6 +173,38 @@ input {
 		padding-left: 0px;
 	}
 }
+/* promoaction */
+
+.tab-content {
+	margin-top: 20px;
+	height: 500px;
+	border-bottom: 1px solid #e8e8e8; 
+}
+#promo {
+	margin-top: 10px;
+}
+
+
+.promo-block {
+	overflow-y: scroll;
+	height: 200px;
+	border: 1px solid #e8e8e8;
+	
+	
+	#seg-cat {
+		margin-top: 10px;
+	}
+}
+
+.check_lab {
+	margin: 20px 0 15px 0;
+	width: 60%;
+	.check_box {
+		width: 20px;
+		height: 20px;
+	}
+} 
+
 
 /* miscellaneous */
 

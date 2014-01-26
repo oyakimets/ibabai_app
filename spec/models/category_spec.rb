@@ -9,10 +9,12 @@ describe Category do
 	it { should respond_to(:user_id) }
 	it { should respond_to(:user) }
 	its(:user) { should eq user }
-	it { should respond_to(:catformats) }
+	it { should respond_to(:catforms) }
 	it { should respond_to(:catchains) }
 	it { should respond_to(:formats) }
 	it { should respond_to(:chains) }
+	it { should respond_to(:actions) }
+	it { should respond_to(:actcats)}
 
 	it { should be_valid }
 

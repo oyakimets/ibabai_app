@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123183201) do
+ActiveRecord::Schema.define(version: 20140125181655) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -21,72 +21,6 @@ ActiveRecord::Schema.define(version: 20140123183201) do
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
-
-  create_table "actchains", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "chain_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actcities", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actcustomers", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "customer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actfeedbacks", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "feedback_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actformats", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "format_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actions", force: true do |t|
-    t.string   "name"
-    t.integer  "brand_id"
-    t.datetime "start"
-    t.datetime "finish"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.float    "del_fee",       default: 0.25
-    t.integer  "del_num"
-    t.integer  "reward_1"
-    t.integer  "reward_2"
-    t.integer  "contact_limit"
-    t.integer  "budget_limit"
-    t.integer  "status"
-  end
-
-  create_table "actsegments", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "segment_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actstores", force: true do |t|
-    t.integer  "action_id"
-    t.integer  "store_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -174,6 +108,65 @@ ActiveRecord::Schema.define(version: 20140123183201) do
 
   create_table "prodcats", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promoacts", force: true do |t|
+    t.string   "name"
+    t.integer  "brand_id"
+    t.datetime "start_date"
+    t.datetime "finish_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.float    "del_fee",       default: 0.25
+    t.integer  "del_num"
+    t.integer  "reward_1"
+    t.integer  "reward_2"
+    t.integer  "contact_limit"
+    t.integer  "budget_limit"
+    t.integer  "status"
+  end
+
+  create_table "promocats", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promocities", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promocustomers", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promofeedbacks", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "feedback_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promosegments", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "segment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promostores", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "store_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

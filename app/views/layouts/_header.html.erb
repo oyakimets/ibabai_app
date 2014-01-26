@@ -2,7 +2,7 @@
 	<div class="navbar-inner">
 		<nav>
 			<ul class="nav navbar-nav navbar-left">
-				<li><%= link_to "Status", actions_path %></li>
+				<li><%= link_to "Status", promoacts_path %></li>
 				<li><%= link_to "Segments", cust_seg_path %></li>
 				<li><%= link_to "Retail", new_category_path %></li>
 				<li><%= link_to "Analitics", '#' %></li>
@@ -11,7 +11,7 @@
 					<% if current_user.admin? %>
 						<%= link_to "New User", signup_path %>
 					<% else %>
-						<%= link_to "New Action", new_action_path %>
+						<%= link_to "New Action", new_promoact_path %>
 					<% end %>
 				</li>
 			</ul>

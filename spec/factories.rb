@@ -63,4 +63,8 @@ FactoryGirl.define do
 		population 500000
 	end
 
+	factory :feedback do
+		sequence(:name) { |n| "Fb_#{n}" }
+	end
+
 end

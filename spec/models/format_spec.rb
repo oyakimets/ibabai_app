@@ -7,9 +7,7 @@ describe Format do
   it { should respond_to(:name) }
   it { should respond_to(:categories) }
   it { should respond_to(:catforms) }
-  it { should respond_to(:actions) }
-  it { should respond_to(:actformats) }
-
+ 
   it { should be_valid }
 
   describe "when name is not present" do

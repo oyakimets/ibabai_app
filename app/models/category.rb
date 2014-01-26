@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
 	belongs_to :user
+	has_many :promocats
+	has_many :promoacts, through: :promocats
 	has_many :catforms, dependent: :destroy
 	has_many :catchains, dependent: :destroy	
 	has_many :formats, through: :catforms
