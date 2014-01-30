@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125181655) do
+ActiveRecord::Schema.define(version: 20140128181020) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140125181655) do
     t.boolean  "dropped"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
   end
 
   add_index "brands", ["name"], name: "index_brands_on_name", unique: true
@@ -127,6 +128,14 @@ ActiveRecord::Schema.define(version: 20140125181655) do
     t.integer  "contact_limit"
     t.integer  "budget_limit"
     t.integer  "status"
+    t.integer  "client_id"
+  end
+
+  create_table "promobrands", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "brand_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "promocats", force: true do |t|
@@ -156,6 +165,24 @@ ActiveRecord::Schema.define(version: 20140125181655) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "promoprods", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "prodcat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promorelations", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "past_promoact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "promorelations", ["past_promoact_id"], name: "index_promorelations_on_past_promoact_id"
+  add_index "promorelations", ["promoact_id", "past_promoact_id"], name: "index_promorelations_on_promoact_id_and_past_promoact_id", unique: true
+  add_index "promorelations", ["promoact_id"], name: "index_promorelations_on_promoact_id"
 
   create_table "promosegments", force: true do |t|
     t.integer  "promoact_id"

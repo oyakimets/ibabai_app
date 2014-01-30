@@ -51,11 +51,12 @@ FactoryGirl.define do
 		sequence(:name) { |n| "Chain_#{n}" }
 	end
 
-	factory :action do
+	factory :promoact do
 		sequence(:name) { |n| "Action_#{n}" }
 		brand_id 1
 		user_id 1
-		start Date.today + 7.days
+		start_date Date.today + 7.days
+		status 1
 	end
 
 	factory :city do

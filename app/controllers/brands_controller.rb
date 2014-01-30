@@ -2,6 +2,7 @@ class BrandsController < ApplicationController
   before_action :correct_user, only: [:update, :destroy]
 	def create
   		@brand = current_user.brands.build(brand_params)
+      @brand.attributes = { client_id: current_user.client_id }
   		if @brand.save
   			flash.now[:success] = "Brand added!"
   			redirect_to user_url(current_user)
@@ -24,7 +25,7 @@ class BrandsController < ApplicationController
   	private
 
   		def brand_params
-  			params.require(:brand).permit(:name, :dropped)
+  			params.require(:brand).permit(:name, :dropped, :prodcat_id)
   		end
 
       def correct_user

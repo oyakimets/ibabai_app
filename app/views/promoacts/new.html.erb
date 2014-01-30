@@ -204,8 +204,55 @@
         </div>          
         </div>
   			<div class="tab-pane" id="feedback">
-  				<p>Feedback attributes</p>
+
+          <%= fields_for(@promoact.promoprods.build) do |pc| %>             
+          <section class="fb-prodcat">
+            <div class="col-md-5">
+              <%= pc.label :prodcats, "product categories" %>
+            </div>
+            <div class="col-md-7" id="fb-block">
+              <%= collection_select(:prodcats, :id,  Prodcat.all, :id, :name, {}, { multiple: true }) %>
+            </div>
+          </section>
+          <% end %>
+
+  				
+          <%= fields_for(@promoact.promobrands.build) do |b| %>              
+          <section class="fb-brand">
+            <div class="col-md-5">
+              <%= b.label :brands, "brands" %>
+            </div>
+            <div class="col-md-7" id="fb-block">
+              <%= collection_select(:brands, :id, current_user.fb_brand_list, :id, :name, {}, { multiple: true }) %>
+            </div>
+          </section>
+          <% end %>
+
+          <%= fields_for(@promoact.promorelations.build) do |pp| %>      
+          <section class="fb-promoact">
+            <div class="col-md-5">
+              <%= pp.label :past_promoacts, "promo actions" %>
+            </div>
+            <div class="col-md-7" id="fb-block">
+              <%= collection_select(:past_promoacts, :id, current_user.fb_promo_list, :id, :name, {}, { multiple: true }) %>
+            </div>
+          </section>
+          <% end %>
+
+          <%= fields_for(@promoact.promofeedbacks.build) do |fb| %>            
+          <section>
+            <div class="row fb-breaker">
+            </div>
+            <div class="col-md-5" id="fb-feed">
+              <%= fb.label :feedbacks, "customer feedback" %>
+            </div>
+            <div class="col-md-7" id="fb-feed">
+              <%= collection_select(:feedbacks, :id, Feedback.all, :id, :name, {}, { multiple: true }) %>
+            </div>
+          </section>
+          <% end %>
   			</div>
+        
         <div class="tab-pane" id="content">
           <p>Content</p>
         </div>

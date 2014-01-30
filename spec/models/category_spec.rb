@@ -13,8 +13,8 @@ describe Category do
 	it { should respond_to(:catchains) }
 	it { should respond_to(:formats) }
 	it { should respond_to(:chains) }
-	it { should respond_to(:actions) }
-	it { should respond_to(:actcats)}
+	it { should respond_to(:promoacts) }
+	it { should respond_to(:promocats)}
 
 	it { should be_valid }
 

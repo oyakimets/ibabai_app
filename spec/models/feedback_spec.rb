@@ -5,8 +5,8 @@ describe Feedback do
   subject { @feedback }
 
   it { should respond_to(:name) }
-  it { should respond_to(:actfeedbacks) }
-  it { should respond_to(:actions) }
+  it { should respond_to(:promofeedbacks) }
+  it { should respond_to(:promoacts) }
   
   it { should be_valid }
 

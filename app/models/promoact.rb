@@ -1,6 +1,10 @@
 class Promoact < ActiveRecord::Base
-	belongs_to :brand
 	belongs_to :user
+	has_many :promorelations, dependent: :destroy
+	has_many :promobrands
+	has_many :brands, through: :promobrands
+	has_many :promoprods
+	has_many :prodcats, through: :promoprods
 	has_many :promofeedbacks
 	has_many :feedbacks, through: :promofeedbacks
 	has_many :promocats
@@ -13,17 +17,23 @@ class Promoact < ActiveRecord::Base
 	validates :brand_id, presence: true
 	validates :user_id, presence: true
 	validates :start_date, presence: true
+	validate :start_cannot_be_in_the_past, :finish_cannot_be_before_start 
 	
 
 	def start_cannot_be_in_the_past
-		if start.present? && start < Date.today
+		if start_date.present? && start_date < Date.today
 			errors.add(:start, "Start date can't be in the past.")
 		end
 	end
 	def finish_cannot_be_before_start
-		if finish.present? && start.present? && finish < start
+		if finish_date.present? && start_date.present? && finish_date < start_date
 			errors.add(:finish, "Finish date can't be before start.")
 		end
 	end
- 	
+
+	def self.from_past_promo(user)
+    	client_id = user.client_id
+    	where("status = ? AND client_id = ?", 6, client_id)
+  	end
+	
 end

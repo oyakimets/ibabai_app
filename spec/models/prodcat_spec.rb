@@ -7,6 +7,13 @@ describe Prodcat do
 	subject { @prodcat }
 	
 	it { should respond_to(:name) }
+	it { should respond_to(:promoacts) }
+	it { should respond_to(:promoprods) }
 
 	it { should be_valid } 
+
+	describe "when name is not present" do
+		before { @prodcat.name = nil }
+		it { should_not be_valid }
+	end
 end

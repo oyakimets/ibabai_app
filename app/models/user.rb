@@ -38,22 +38,26 @@ class User < ActiveRecord::Base
 		Brand.where("user_id = ? AND dropped IS ?", id, nil)
 	end
 
+	def fb_brand_list
+		Brand.from_brands(self)
+	end
+
 	def seg_list
 		Segment.where("user_id = ? AND dropped IS ?", id, nil)
 	end
 
 	def cat_list
 		Category.where("user_id = ? AND dropped IS ?", id, nil)
-	end	
-	
+	end
 
+	def fb_promo_list
+		Promoact.from_past_promo(self)
+	end
+	
 	private
 
 		def create_remember_token
 			self.remember_token = User.encrypt(User.new_remember_token)
 		end
-
 		
 end
-
-

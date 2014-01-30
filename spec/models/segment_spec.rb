@@ -12,8 +12,8 @@ describe Segment do
 	it { should respond_to(:age_min) }
 	it { should respond_to(:user) }
 	its(:user) { should eq user }
-	it { should respond_to(:actsegments) }
-	it { should respond_to(:actions) }
+	it { should respond_to(:promosegments) }
+	it { should respond_to(:promoacts) }
 
 	it { should be_valid }
 
@@ -31,5 +31,4 @@ describe Segment do
 		before { @segment.age_max = 15 }
 		it { should_not be_valid }
 	end
-
 end

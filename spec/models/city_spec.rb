@@ -6,8 +6,8 @@ describe City do
 
   it { should respond_to(:name) }
   it { should respond_to(:population) }
-  it { should respond_to(:actcities) }
-  it { should respond_to(:actions) }
+  it { should respond_to(:promocities) }
+  it { should respond_to(:promoacts) }
   
   it { should be_valid }
 

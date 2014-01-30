@@ -15,6 +15,8 @@ describe Brand do
 	its(:user) { should eq user }
 	it { should respond_to(:prodcat) }
 	its(:prodcat) { should eq prodcat }
+	it { should respond_to(:promobrands) }
+	it { should respond_to(:promoacts) }
 
 	it { should be_valid }
 
