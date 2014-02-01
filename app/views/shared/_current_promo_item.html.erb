@@ -1,0 +1,59 @@
+<li id="<%= current_promo_item.id %>">
+  <div class="row" id="promo-item"> 
+    <div class="col-md-1">
+      <% case current_promo_item.status 
+         when 1 %>
+         <%= link_to "Planned", edit_promoact_path(current_promo_item), class: "btn btn-default btn-lg" %>
+      <% when 2 %>         
+         <%= link_to "Submitted", edit_promoact_path(current_promo_item), class: "btn btn-warning btn-lg" %>
+      <% when 3 %>
+          <%= link_to "Approved", edit_promoact_path(current_promo_item), class: "btn btn-success btn-lg" %>
+      <% when 4 %>        
+        <%= link_to "Declined", edit_promoact_path(current_promo_item), class: "btn btn-danger btn-lg" %>
+      <% when 5 %>        
+        <%= link_to "Running", edit_promoact_path(current_promo_item), class: "btn btn-primary btn-lg" %>         
+      <% end %>
+      
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">
+      <div class="txt">Promo: <%= current_promo_item.name %></div>
+      <div class="txt">Brand: <%= Brand.find_by(id: current_promo_item.brand_id).name %></div>
+    </div>
+    <div class="col-md-1">
+      <% if Date.today > current_promo_item.start_date - 5.days && current_promo_item.status == 1  %>
+        <h3><span class="label label-warning">
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+        </span></h3>
+      <% end %>
+    </div>
+    <div class="col-md-1">
+      <div class="txt">Start</div>
+      <div class="txt"><%= current_promo_item.start_date.strftime("%d/%m/%Y") %></div>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+      <div class="txt">Submit</div>
+      <div class="txt"><%= (current_promo_item.start_date - 5.days).strftime("%d/%m/%Y") %></div>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+    <% if current_user?(current_promo_item.user) %>
+      <% case current_promo_item.status when 1 %>
+        <%= link_to "Delete", current_promo_item, class: "btn btn-info btn-sm", method: :delete, data: { confirm: "Are you sure?"}, title: current_promo_item.name %>
+      <% when 2 %>         
+         <%= link_to "Recall", recall_promoact_path(current_promo_item), class: "btn btn-info btn-sm", method: :patch, data: { confirm: "Are you sure?"}, title: current_promo_item.name %>       
+      <% when 3 %>
+        <%= link_to "Recall", recall_promoact_path(current_promo_item), class: "btn btn-info btn-sm", method: :patch, data: { confirm: "Are you sure?"}, title: current_promo_item.name %><br>       
+      <% when 4 %>        
+        <%= link_to "Delete", current_promo_item, class: "btn btn-info btn-sm", method: :delete, data: { confirm: "Are you sure?"}, title: current_promo_item.name %> 
+      <% when 5 %>
+        <%= link_to "Recall", recall_promoact_path(current_promo_item), class: "btn btn-info btn-sm", method: :patch, data: { confirm: "Are you sure?"}, title: current_promo_item.name %>        
+       <% end %>
+      <% end %>      
+    </div>  
+  </div>
+</li>

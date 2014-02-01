@@ -1,2 +1,22 @@
 <% provide(:title, "status") %>
-<h1>Status</h1>
+<h3>Promo actions</h3>
+
+<div class = "row">
+	<ul class="nav nav-tabs">
+  		<li><a href="#current" data-toggle="tab">current</a></li>
+  		<li><a href="#archive" data-toggle="tab">archive</a></li>  			
+	</ul>
+
+	<div class="tab-content">
+  		<div class="tab-pane active" id="current">
+
+			<%= render "shared/current_promo_list" %>
+
+		</div>
+		<div class="tab-pane" id="archive">
+
+			<%= render "shared/past_promo_list" %>
+
+		</div>
+	</div>
+</div>

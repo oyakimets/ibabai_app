@@ -1,5 +1,8 @@
 class Promoact < ActiveRecord::Base
-	belongs_to :user
+	mount_uploader :cont_tag, ContTagUploader
+	mount_uploader :cont_pres, ContPresUploader
+	mount_uploader :cont_desc, ContDescUploader 
+	belongs_to :user	
 	has_many :promorelations, dependent: :destroy
 	has_many :promobrands
 	has_many :brands, through: :promobrands
@@ -33,7 +36,6 @@ class Promoact < ActiveRecord::Base
 
 	def self.from_past_promo(user)
     	client_id = user.client_id
-    	where("status = ? AND client_id = ?", 6, client_id)
-  	end
-	
+    	where("status = ? AND client_id = ?", 6, client_id )
+  	end  	
 end

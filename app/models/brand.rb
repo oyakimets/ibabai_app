@@ -11,6 +11,6 @@ class Brand < ActiveRecord::Base
 	def self.from_brands(user)
 		client_id = user.client_id
 		where("client_id = ? AND dropped IS ?", client_id, nil)
-	end
-
+	end	
+	
 end

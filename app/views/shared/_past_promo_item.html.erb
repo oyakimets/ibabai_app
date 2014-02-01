@@ -1,0 +1,43 @@
+<li id="<%= past_promo_item.id %>">
+  <div class="row" id="promo-item"> 
+    <div class="col-md-1">
+      <h3><span class="label label-warning">Image tag</span></h3>
+    </div> 
+    <div class="col-md-1">
+    </div>   
+    <div class="col-md-2">
+      <div class="txt">Promo: <%= past_promo_item.name %></div>
+      <div class="txt">Brand: <%= Brand.find_by(id:past_promo_item.brand_id).name %></div>
+    </div>
+    <div class="col-md-1">
+      <div class="txt">Start</div>
+      <div class="txt"><%= past_promo_item.start_date.strftime("%d/%m/%Y") %></div>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+      <div class="txt">End</div>
+      <div class="txt"><%= (past_promo_item.start_date + 15.days).strftime("%d/%m/%Y") %></div>      
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+      <div class="txt">Contacts</div>
+      <div class="txt">100 000</div>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+      <div class="txt">Budget(UAH)</div>
+      <div class="txt">500 000</div>
+    </div>
+    
+    <div class="col-md-1">
+      <%= link_to "details", past_promo_item, class: "btn btn-link" %><br>
+
+      <% if current_user?(past_promo_item.user) %>
+        <%= link_to "drop", drop_promoact_path(past_promo_item), class: "btn btn-link", method: :patch, data: { confirm: "Are you sure?"}, title: past_promo_item.name %>
+      <% end %>
+    </div>  
+  </div>
+</li>

@@ -1,0 +1,5 @@
+<% if @past_promo_items.any? %>
+	<ol class="past-promoacts">
+		<%= render partial: 'shared/past_promo_item', collection: @past_promo_items %>
+	</ol>
+<% end %>

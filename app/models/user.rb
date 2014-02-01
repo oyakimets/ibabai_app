@@ -53,6 +53,16 @@ class User < ActiveRecord::Base
 	def fb_promo_list
 		Promoact.from_past_promo(self)
 	end
+
+	def current_promo_list
+
+		Promoact.where("user_id = ? AND status <> ?", id, 6)		
+	end
+
+	def past_promo_list
+		Promoact.where("user_id = ? AND status = ? AND dropped IS ?", id, 6, nil)
+	end
+
 	
 	private
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128181020) do
+ActiveRecord::Schema.define(version: 20140201083039) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -127,8 +127,12 @@ ActiveRecord::Schema.define(version: 20140128181020) do
     t.integer  "reward_2"
     t.integer  "contact_limit"
     t.integer  "budget_limit"
-    t.integer  "status"
+    t.integer  "status",        default: 1
     t.integer  "client_id"
+    t.string   "cont_tag"
+    t.string   "cont_pres"
+    t.string   "cont_desc"
+    t.boolean  "dropped"
   end
 
   create_table "promobrands", force: true do |t|

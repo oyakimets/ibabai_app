@@ -31,7 +31,7 @@
             <% end %>
             <span class="timestamp"><%= seg_list_item.created_at.strftime("Listed on %d/%m/%Y") %></span><br>
             <% if current_user?(seg_list_item.user) %>
-              <%= link_to "drop", seg_list_item, method: :patch, data: { confirm: "Are you sure?"}, title:    seg_list_item.name %>
+              <%= link_to "drop", seg_list_item, method: :patch, data: { confirm: "Are you sure?"}, title: seg_list_item.name %>
             <% end %>
       </div>       
     </div>

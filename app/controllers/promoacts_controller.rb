@@ -1,9 +1,13 @@
 class PromoactsController < ApplicationController
+  
   before_action :signed_in_user   
   	def index
+  		@current_promo_items = current_user.current_promo_list
+  		@past_promo_items = current_user.past_promo_list
 	end
 
 	def show
+		@promoact = Promoact.find(params[:id])
 	end
 
 	def new
@@ -59,14 +63,42 @@ class PromoactsController < ApplicationController
 	end
 
 	def edit
+		@promoact = Promoact.find(params[:id])
 	end
 
+	def update
+		@promoact = Promoact.find(params[:id])
+		@promoact.update_attributes(promoact_params)		
+		redirect_to promoacts_url		
+	end
+
+	def recall
+		@promoact = Promoact.find(params[:id])
+		if @promoact.status == 5
+			@promoact.update_column(:status, 6)
+		else
+			@promoact.update_column(:status, 1)	
+		end	
+		redirect_to promoacts_url		
+	end
+
+	def drop
+		@promoact =	Promoact.find(params[:id])
+		if @promoact.status == 6
+			@promoact.update_column(:dropped, true)
+			redirect_to promoacts_url
+		end
+	end	
+	
 	def destroy
+		@promoact = Promoact.find(params[:id])
+		@promoact.destroy
+		redirect_to promoacts_url
 	end
 
 	private
 		def promoact_params
-  			params.require(:promoact).permit(:name, :brand_id, :start_date, :finish_date, :del_num, :reward_1, :reward_2, :contact_limit, :budget_limit, :client_id)
+  			params.require(:promoact).permit(:name, :brand_id, :start_date, :finish_date, :del_num, :reward_1, :reward_2, :contact_limit, :budget_limit, :client_id, :cont_tag, :cont_pres, :cont_desc)
   		end
 
   		def signed_in_user
