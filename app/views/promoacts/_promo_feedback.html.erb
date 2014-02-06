@@ -1,0 +1,75 @@
+
+<% if !@promo_prods.empty? %>
+<div class = "row block">
+	<h5><strong>Product categories</strong></h5>
+	<ol>
+		<% @promo_prods.each do |pp| %>
+			<li>
+				<div class="col-md-6">
+					<%= pp.name %>
+				</div>
+				<div class="col-md-6">
+					<%= link_to "delete", @promoact.promoprods.find_by(prodcat_id: pp.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+				</div>
+			</li>
+		<% end %>
+	</ol>			
+</div>
+<% else %>
+	<% if !@promo_brands.empty? %>
+	<div class = "row block">
+	<h5><strong>Brands</strong></h5>
+	<ol>
+		<% @promo_brands.each do |pb| %>
+			<li>
+				<div class="col-md-6">
+					<%= pb.name %>
+				</div>
+				<div class="col-md-6">
+					<%= link_to "delete", @promoact.promobrands.find_by(brand_id: pb.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+				</div>
+			</li>
+		<% end %>
+	</ol>			
+	</div>
+	<% else %>
+		<% if !@promo_proms.empty? %>
+		<div class = "row block">
+		<h5><strong>Promo actions</strong></h5>
+		<ol>
+		<% @promo_proms.each do |pp| %>
+			<li>
+				<div class="col-md-6">
+					<%= pp.name %>
+				</div>
+				<div class="col-md-6">
+					<%= link_to "delete", @promoact.promorelations.find_by(past_promoact_id: pp.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+				</div>
+			</li>
+		<% end %>
+		</ol>			
+		</div>
+		<% else %>
+			<h5>All promo actions</h5>
+		<% end %>
+	<% end %>
+<% end %>
+<% if !@promo_fbs.empty? %>
+<div class = "row block">
+	<h5><strong>Feedback attributes</strong></h5>
+	<ol>
+		<% @promo_fbs.each do |pf| %>
+			<li>
+				<div class="col-md-6">
+					<%= pf.name %>
+				</div>
+				<div class="col-md-6">
+					<%= link_to "delete", @promoact.promofeedbacks.find_by(feedback_id: pf.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+				</div>
+			</li>
+		<% end %>
+	</ol>			
+</div>
+<% else %>
+	<h5>No feedback attributes selected</h5>
+<% end %>

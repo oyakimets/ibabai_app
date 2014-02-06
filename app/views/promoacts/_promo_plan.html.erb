@@ -1,6 +1,3 @@
-<% provide(:title, @promoact.name) %>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3" id="promo-plan">
 		<h3>Promo action: <%= @promoact.name %></h3><br>
 		<div class = "row block">
 			<div class="col-md-6" id="params">			
@@ -30,11 +27,14 @@
 			<h5><strong>Geography coverage</strong></h5>
 				<ol>
 					<% @promo_cities.each do |pc| %>
-					<div class="col-md-12">
 						<li>
-							<%= pc.name %>							
+							<div class="col-md-6">
+								<%= pc.name %>
+							</div>
+							<div class="col-md-6">
+								<%= link_to "delete", @promoact.promocities.find_by(city_id: pc.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>						
+							</div>
 						</li>
-					</div>
 					<% end %>
 				</ol>			
 		</div>
@@ -42,11 +42,14 @@
 			<h5><strong>Customer segments</strong></h5>
 				<ol>
 					<% @promo_segments.each do |ps| %>
-					<div class="col-md-12">
 						<li>
-							<%= ps.name %>							
+							<div class="col-md-6">
+								<%= ps.name %>
+							</div>
+							<div class="col-md-6">
+								<%= link_to "delete", @promoact.promosegments.find_by(segment_id: ps.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+							</div>
 						</li>
-					</div>
 					<% end %>
 				</ol>			
 		</div>
@@ -54,26 +57,24 @@
 			<h5><strong>Trade categories</strong></h5>
 				<ol>
 					<% @promo_cats.each do |pc| %>
-					<div class="col-md-12">
 						<li>
-							<%= pc.name %>							
+							<div class="col-md-6">
+								<%= pc.name %>
+							</div>
+							<div class="col-md-6">
+								<%= link_to "delete", @promoact.promocats.find_by(category_id: pc.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>	
+							</div>
 						</li>
-					</div>
 					<% end %>
 				</ol>			
 		</div>
-		<div class = "feedbacks">
-			<h4>Feedback schema</h4>
-			<%= render "promoacts/archive_feedback" %>
+		<div class = "feedbacks">			
+			<h4>Feedback schema</h4>	
+			<%= render "promoacts/promo_feedback" %>	
 		</div>
+
 		<div class = "content">
 			<h4>Promo content</h4>
-			<%= render "promoacts/archive_content" %>
+			<%= render "promoacts/promo_content" %>
 		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3" id="but-section">
-		<button type="button" class="btn btn-default">Print</button>
-	</div>
-</div> 
+	

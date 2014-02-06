@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201083039) do
+ActiveRecord::Schema.define(version: 20140204102704) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -142,12 +142,20 @@ ActiveRecord::Schema.define(version: 20140201083039) do
     t.datetime "updated_at"
   end
 
+  add_index "promobrands", ["brand_id"], name: "index_promobrands_on_brand_id"
+  add_index "promobrands", ["promoact_id", "brand_id"], name: "index_promobrands_on_promoact_id_and_brand_id", unique: true
+  add_index "promobrands", ["promoact_id"], name: "index_promobrands_on_promoact_id"
+
   create_table "promocats", force: true do |t|
     t.integer  "promoact_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "promocats", ["category_id"], name: "index_promocats_on_category_id"
+  add_index "promocats", ["promoact_id", "category_id"], name: "index_promocats_on_promoact_id_and_category_id", unique: true
+  add_index "promocats", ["promoact_id"], name: "index_promocats_on_promoact_id"
 
   create_table "promocities", force: true do |t|
     t.integer  "promoact_id"
@@ -156,12 +164,20 @@ ActiveRecord::Schema.define(version: 20140201083039) do
     t.datetime "updated_at"
   end
 
+  add_index "promocities", ["city_id"], name: "index_promocities_on_city_id"
+  add_index "promocities", ["promoact_id", "city_id"], name: "index_promocities_on_promoact_id_and_city_id", unique: true
+  add_index "promocities", ["promoact_id"], name: "index_promocities_on_promoact_id"
+
   create_table "promocustomers", force: true do |t|
     t.integer  "promoact_id"
     t.integer  "customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "promocustomers", ["customer_id"], name: "index_promocustomers_on_customer_id"
+  add_index "promocustomers", ["promoact_id", "customer_id"], name: "index_promocustomers_on_promoact_id_and_customer_id", unique: true
+  add_index "promocustomers", ["promoact_id"], name: "index_promocustomers_on_promoact_id"
 
   create_table "promofeedbacks", force: true do |t|
     t.integer  "promoact_id"
@@ -170,12 +186,20 @@ ActiveRecord::Schema.define(version: 20140201083039) do
     t.datetime "updated_at"
   end
 
+  add_index "promofeedbacks", ["feedback_id"], name: "index_promofeedbacks_on_feedback_id"
+  add_index "promofeedbacks", ["promoact_id", "feedback_id"], name: "index_promofeedbacks_on_promoact_id_and_feedback_id", unique: true
+  add_index "promofeedbacks", ["promoact_id"], name: "index_promofeedbacks_on_promoact_id"
+
   create_table "promoprods", force: true do |t|
     t.integer  "promoact_id"
     t.integer  "prodcat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "promoprods", ["prodcat_id"], name: "index_promoprods_on_prodcat_id"
+  add_index "promoprods", ["promoact_id", "prodcat_id"], name: "index_promoprods_on_promoact_id_and_prodcat_id", unique: true
+  add_index "promoprods", ["promoact_id"], name: "index_promoprods_on_promoact_id"
 
   create_table "promorelations", force: true do |t|
     t.integer  "promoact_id"
@@ -195,12 +219,20 @@ ActiveRecord::Schema.define(version: 20140201083039) do
     t.datetime "updated_at"
   end
 
+  add_index "promosegments", ["promoact_id", "segment_id"], name: "index_promosegments_on_promoact_id_and_segment_id", unique: true
+  add_index "promosegments", ["promoact_id"], name: "index_promosegments_on_promoact_id"
+  add_index "promosegments", ["segment_id"], name: "index_promosegments_on_segment_id"
+
   create_table "promostores", force: true do |t|
     t.integer  "promoact_id"
     t.integer  "store_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "promostores", ["promoact_id", "store_id"], name: "index_promostores_on_promoact_id_and_store_id", unique: true
+  add_index "promostores", ["promoact_id"], name: "index_promostores_on_promoact_id"
+  add_index "promostores", ["store_id"], name: "index_promostores_on_store_id"
 
   create_table "segments", force: true do |t|
     t.string   "name"

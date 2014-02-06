@@ -15,5 +15,10 @@ class Category < ActiveRecord::Base
 
 	def chain_feed
 		Chain.from_chains(self)
+	end
+
+	def self.show_cats(promoact)
+		category_ids = promoact.category_ids
+		where("id IN (?)", category_ids)
 	end	
 end

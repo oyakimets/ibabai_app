@@ -2,8 +2,16 @@ IbabaiApp::Application.routes.draw do
   resources :promoacts do
     member do
       patch :recall, :drop
+      delete :del_cont_tag, :del_cont_pres, :del_cont_desc 
     end
   end
+  resources :promocities, only: :destroy
+  resources :promosegments, only: :destroy
+  resources :promocats, only: :destroy
+  resources :promoprods, only: :destroy
+  resources :promobrands, only: :destroy
+  resources :promofeedbacks, only: :destroy
+  resources :promorelations, only: :destroy
   resources :categories
   resources :segments
   resources :accounts, only: :show

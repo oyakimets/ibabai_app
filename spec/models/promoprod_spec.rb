@@ -25,5 +25,5 @@ describe Promoprod do
 	describe "when prodcat id is not present" do
 		before { promoprod.prodcat_id = nil }
 		it { should_not be_valid }
-	end #{__FILE__}"
+	end 
 end

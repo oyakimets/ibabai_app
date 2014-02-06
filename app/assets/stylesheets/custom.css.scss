@@ -67,7 +67,7 @@ aside {
 input, textarea, select, .uneditable-input {
 	border: 1px solid #bbb;
 	width: 100%;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 	@include box_sizing;
 
 }
@@ -92,6 +92,10 @@ input {
 .alert-error {
 	color: #f00;
 	font-size: 1.4em;
+	text-align: center;
+}
+
+#form-title {
 	text-align: center;
 }
 /* users index */
@@ -177,7 +181,7 @@ input {
 
 .tab-content {
 	margin-top: 20px;
-	height: 500px;
+	height: 515px;
 	border-bottom: 1px solid #e8e8e8; 
 }
 #promo {
@@ -251,6 +255,58 @@ input {
 .past-promoacts {
 	list-style: none;
 }
+
+/* promo plan */
+
+#promo-plan {
+	height: 580px;
+	overflow-y: scroll;
+	border: 1px solid #e8e8e8;
+
+	h4 {
+		padding-top: 20px;
+	}
+	
+	h5 {
+		padding-left: 15px;
+		padding-top: 15px;		
+	}
+	#params {
+		line-height: 2;
+		
+	}	
+
+	ol {
+		list-style: none;
+		line-height: 2;
+		padding-left: 0;
+		
+		
+		li {
+			margin-left: 0;
+			padding-left: 0;
+		}
+	}	
+}
+
+#but-section {
+	.btn {
+		margin-top: 10px;
+		float: right;
+	}
+}
+
+#print {
+	margin-right: 10px;
+}
+
+.feedbacks {
+	border-top: 1px solid #e8e8e8; 
+}
+.content {
+	border-top: 1px solid #e8e8e8; 
+}
+
 
 
 /* miscellaneous */

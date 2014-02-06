@@ -1,0 +1,38 @@
+<div class = "row block">
+	<div class="col-md-6">
+		<p>Promo tag</p>
+	</div>
+	<% if !@promoact.cont_tag.blank? %>
+		<div class="col-md-3">
+			<%= link_to "Preview", @promoact.cont_tag_url , class: "btn btn-link" %>
+		</div>
+		<div class="col-md-3">			
+		</div>
+	<% end %>			
+</div>
+
+<div class = "row block">
+	<div class="col-md-6">
+		<p>Promo presentation</p>
+	</div>
+	<% if !@promoact.cont_pres.blank? %>
+		<div class="col-md-3">
+			<%= link_to "Preview", @promoact.cont_pres_url, class: "btn btn-link" %>
+		</div>
+		<div class="col-md-3">			
+		</div>
+	<% end %>			
+</div>
+
+<div class = "row block">
+	<div class="col-md-6">
+		<p>Promo description</p>
+	</div>
+	<% if !@promoact.cont_desc.blank? %>
+		<div class="col-md-3">
+			<%= link_to "Preview", @promoact.cont_desc_url , class: "btn btn-link" %>
+		</div>
+		<div class="col-md-3">			
+		</div>
+	<% end %>			
+</div>

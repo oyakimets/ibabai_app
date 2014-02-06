@@ -26,6 +26,7 @@ FactoryGirl.define do
 	factory :brand do
 		sequence(:name) { |n| "Lolipop_#{n}" }
 		prodcat_id 1
+		client_id 1
 		user
 	end		
 
@@ -54,9 +55,11 @@ FactoryGirl.define do
 	factory :promoact do
 		sequence(:name) { |n| "Action_#{n}" }
 		brand_id 1
-		user_id 1
 		start_date Date.today + 7.days
 		status 1
+		finish_date Date.today + 15.days
+		client_id 1
+		user
 	end
 
 	factory :city do

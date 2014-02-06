@@ -11,7 +11,7 @@
       <% when 4 %>        
         <%= link_to "Declined", edit_promoact_path(current_promo_item), class: "btn btn-danger btn-lg" %>
       <% when 5 %>        
-        <%= link_to "Running", edit_promoact_path(current_promo_item), class: "btn btn-primary btn-lg" %>         
+        <%= link_to "Running", current_promo_item, class: "btn btn-primary btn-lg" %>         
       <% end %>
       
     </div>

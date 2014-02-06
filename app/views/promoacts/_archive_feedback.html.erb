@@ -1,0 +1,63 @@
+<% if !@promo_prods.empty? %>
+<div class = "row block">
+	<h5><strong>Product categories</strong></h5>
+	<ol>
+		<% @promo_prods.each do |pp| %>
+		<div class="col-md-12">
+			<li>
+				<%= pp.name %>
+			
+			</li>
+		</div>
+		<% end %>
+	</ol>			
+</div>
+<% else %>
+	<% if !@promo_brands.empty? %>
+	<div class = "row block">
+	<h5><strong>Brands</strong></h5>
+	<ol>
+		<% @promo_brands.each do |pb| %>
+		<div class="col-md-12">
+			<li>
+				<%= pb.name %>				
+			</li>
+		</div>
+		<% end %>
+	</ol>			
+	</div>
+	<% else %>
+		<% if !@promo_proms.empty? %>
+		<div class = "row block">
+		<h5><strong>Promo actions</strong></h5>
+		<ol>
+		<% @promo_proms.each do |pp| %>
+		<div class="col-md-12">
+			<li>
+				<%= pp.name %>				
+			</li>
+		</div>
+		<% end %>
+		</ol>			
+		</div>
+		<% else %>
+			<h5>All promo actions</h5>
+		<% end %>
+	<% end %>
+<% end %>
+<% if !@promo_fbs.empty? %>
+<div class = "row block">
+	<h5><strong>Feedback attributes</strong></h5>
+	<ol>
+		<% @promo_fbs.each do |pf| %>
+		<div class="col-md-12">
+			<li>
+				<%= pf.name %>				
+			</li>
+		</div>
+		<% end %>
+	</ol>			
+</div>
+<% else %>
+	<h5>No feedback attributes selected</h5>
+<% end %>

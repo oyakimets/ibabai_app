@@ -26,5 +26,5 @@ describe Promobrand do
 	describe "when brand id is not present" do
 		before { promobrand.brand_id = nil }
 		it { should_not be_valid }
-	end #{__FILE__}" #{__FILE__}"
+	end 
 end

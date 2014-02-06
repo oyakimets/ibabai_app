@@ -14,5 +14,10 @@ class Segment < ActiveRecord::Base
 			errors.add(:age_max, "can't be below minimum age")
 		end
 	end
+
+	def self.show_segments(promoact)
+		segment_ids = promoact.segment_ids
+		where("id IN (?)", segment_ids)
+	end
 	
 end
