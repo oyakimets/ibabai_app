@@ -1,0 +1,32 @@
+<% current_user.a_brand_list.each do |brand| %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="col-md-9">
+	     <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapseOne<%= brand.id %>">
+        			<%= brand.name %> 
+          </a>
+        </h4>
+      </div>
+      <div class="col-md-3">
+        <%= check_box_tag "brand_id[]", brand.id %>
+      </div>
+    </div>
+    <div id="collapseOne<%= brand.id %>" class="panel-collapse collapse">
+      <div class= "panel-body"> 
+      	<ol id="a-list"> 	 
+          <% brand.a_promoact_list.each do |pa| %>
+            <li>
+              <div class="col-md-9">
+          	     <%= pa.name %>
+              </div>
+              <div class="col-md-3">
+                <%= check_box_tag "promoact_id[]", pa.id %>
+          	   </div>
+            </li>
+          <% end %>
+        </ol>
+      </div>       
+    </div>
+  </div>
+<% end %>        

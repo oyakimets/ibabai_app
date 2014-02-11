@@ -29,6 +29,7 @@ class Promoact < ActiveRecord::Base
 			errors.add(:start, "Start date can't be in the past.")
 		end
 	end
+
 	def finish_cannot_be_before_start
 		if finish_date.present? && start_date.present? && finish_date < start_date
 			errors.add(:finish, "Finish date can't be before start.")
@@ -72,4 +73,8 @@ class Promoact < ActiveRecord::Base
 	def fb_feed
   		Feedback.show_fbs(self)
   	end
+
+  	def self.a_promoacts(brand)
+		where("brand_id = ? AND status = ?", brand.id, 6)
+	end	
 end

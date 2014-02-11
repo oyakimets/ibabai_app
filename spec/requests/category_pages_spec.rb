@@ -28,8 +28,8 @@ describe "Category pages" do
 		describe "with valid information" do
 			before do
 				fill_in "trade category name", with: "My-category"
-				select "My-chain", from: "chains"
-				select "My-format", from: "formats"				
+				find("#chains_id").select("My-chain")
+				find("#formats_id").select("My-format")				
 			end
 
 			it "should create category" do
@@ -44,5 +44,17 @@ describe "Category pages" do
 				expect{ click_button submit }.to change(Catchain, :count).by(1)
 			end
 		end		
+	end
+
+	describe "dropping category" do
+		let(:user) { FactoryGirl.create(:user, client_id: 1, account_id: 1) }
+		let(:category) { FactoryGirl.create(:category, user: user, name: "My cat") }
+		before do
+			sign_in user
+			visit new_category_path
+			find_link("drop").click
+		end
+
+		it { should_not have_content("My cat") }
 	end
 end

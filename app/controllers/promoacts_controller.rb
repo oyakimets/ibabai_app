@@ -153,6 +153,14 @@ class PromoactsController < ApplicationController
 		end
 	end
 
+	def submit
+		@promoact = Promoact.find(params[:id])
+		if @promoact.status == 1
+			@promoact.update_column(:status, 2)
+			redirect_to promoacts_url
+		end
+	end
+
 	def del_cont_tag
 		@promoact = Promoact.find(params[:id])
 		@promoact.remove_cont_tag = true

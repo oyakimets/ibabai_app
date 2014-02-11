@@ -11,11 +11,20 @@ class Brand < ActiveRecord::Base
 	def self.from_brands(user)
 		client_id = user.client_id
 		where("client_id = ? AND dropped IS ?", client_id, nil)
+	end
+
+	def self.a_brands(user)
+		client_id = user.client_id
+		where("client_id = ?", client_id)
 	end	
 
 	def self.show_brands(promoact)
 		brand_ids = promoact.brand_ids
 		where("id IN (?)", brand_ids)
+	end
+
+	def a_promoact_list
+		Promoact.a_promoacts(self)
 	end	
 	
 end

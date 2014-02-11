@@ -6,10 +6,26 @@
   </div>
   <div class = "col-md-1">
   </div>
-  <div class = "col-md-5" id="promo-plan"> 
+  <div class = "col-md-5" id = "edit-right">
+    <div class="row" id="promo-plan"> 
       <%= render "promoacts/promo_plan" %>
-  </div>  
-  <div class="row" id="but-section">
-    <button type="button" class="btn btn-default" id="print">Print</button>
-  </div>   
+    </div>
+    <div class = "row" id="but-section">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-default" id="print">Print plan</button> 
+      </div>    
+      <div class= "col-md-6">
+      </div>
+      <div class="col-md-3">
+        <% if (!@promoact.finish_date.nil? || !@promoact.contact_limit.nil? || !@promoact.budget_limit.nil?) && (!@promoact.cont_tag.blank? && !@promoact.cont_pres.blank? && !@promoact.cont_desc.blank?) %>
+            <%= link_to "Submit promo", submit_promoact_path(@promoact), class: "btn btn-default btn-primary", method: :patch, title: @promoact.name %>
+        <% else %>
+           <button type="button" class="btn btn-default" id="print">Submit promo</button>
+          <% end %> 
+      </div>
+    </div>
+  </div>
 </div>
+
+    
+

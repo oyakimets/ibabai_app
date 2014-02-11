@@ -1,0 +1,25 @@
+  <div class="panel panel-default" id="prodcat-head">
+    <div class="panel-heading">
+	     <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapseOne">
+        			Product categories
+          </a>
+        </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class= "panel-body"> 
+      	<ol id="a-list"> 	 
+        <% Prodcat.all.each do |pc| %>
+          <li>
+            <div class="col-md-9">
+          	 <%= pc.name %>
+            </div>
+            <div class="col-md-3">
+              <%= check_box_tag "prodcat_id[]", pc.id %>
+          	</div>
+          </li>
+        <% end %>
+        </ol>
+       </div>       
+    </div>
+  </div>        

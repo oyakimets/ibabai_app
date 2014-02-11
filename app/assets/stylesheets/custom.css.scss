@@ -257,55 +257,142 @@ input {
 }
 
 /* promo plan */
+#edit-right {
+	#promo-plan {
+		height: 580px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		border: 1px solid #e8e8e8;
 
-#promo-plan {
-	height: 580px;
-	overflow-y: scroll;
-	border: 1px solid #e8e8e8;
-
-	h4 {
+		h4 {
 		padding-top: 20px;
-	}
-	
-	h5 {
-		padding-left: 15px;
-		padding-top: 15px;		
-	}
-	#params {
-		line-height: 2;
-		
-	}	
+		padding-left: 10px;
+		}
 
-	ol {
+		h5 {
+		padding-left: 10px;		
+		padding-top: 10px;
+		margin-left: 15px;		
+		}
+
+		#params {
+		line-height: 2;
+		span {
+			padding-left: 10px;
+			}
+		}
+
+		ol {
 		list-style: none;
 		line-height: 2;
-		padding-left: 0;
+		padding-left: 10px;
+		margin-left: 0;
 		
 		
 		li {
 			margin-left: 0;
 			padding-left: 0;
-		}
-	}	
-}
+		 	}
+		}		
+	}
 
-#but-section {
-	.btn {
-		margin-top: 10px;
-		float: right;
+	h3 {
+		padding-left: 10px;
+	}
+
+	.feedbacks {
+		border-top: 1px solid #e8e8e8;
+		#fb-mes {
+			padding-left: 10px;
+			margin-left: 0;
+		}
+	}
+
+	.content {
+	border-top: 1px solid #e8e8e8;
+	#promo-cont {
+		padding-left: 10px;
+		} 
 	}
 }
 
-#print {
-	margin-right: 10px;
+#but-section {
+	.btn-default {
+		margin-top: 10px;
+	}
+}	
+
+/* analytics */
+
+#analytics {
+
+	#print {
+		float: right;
+	}
+
+	#t-val {
+		text-align: center;
+	}
+
+	#prodcat-head {
+		margin-top: 20px;
+		margin-bottom: 0;
+	}
+
+	.panel-heading {
+		height: 37px;
+	}
+
+	#brands-ch {
+		border: 1px solid #e8e8e8;
+		height: 325px;
+		overflow-y: scroll; 
+	}
+
+	#attr-ch {
+		border: 1px solid #e8e8e8;
+		height: 100px;
+		overflow-y: scroll; 
+	}
+
+	.btn {
+		width: 100px;
+		margin-top: 10px;
+	}
+
+
+	#report {
+	
+		height: 575px;	
+	}
+	
+
+	h5 {
+		padding: 5px;
+	}
+
+	h4 {
+		padding-left: 5px;
+	}
+
+	#promo-charts {
+		height: 500px;
+		width: 750px;
+		border: 1px solid #e8e8e8; 
+	}
+
+	#a-list {
+		list-style: none;
+		margin-left: 0;
+		padding-left: 0;
+		li {
+			margin-left: 0;
+			padding-left: 0;
+		}
+	}
 }
 
-.feedbacks {
-	border-top: 1px solid #e8e8e8; 
-}
-.content {
-	border-top: 1px solid #e8e8e8; 
-}
+
 
 
 

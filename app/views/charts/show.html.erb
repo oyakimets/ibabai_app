@@ -1,0 +1,47 @@
+<% provide(:title, "analytics") %>
+
+
+<%= form_tag :run do %>
+<div class = "row" id="analytics">	
+	<div class="col-md-3">		
+		<%= render "charts/prodcat_ch" %>
+		<div>
+			<h5><strong>brands</strong></h5>
+		</div>
+		<div id="brands-ch">
+			<%= render "charts/brand_ch" %>
+		</div>
+		<div>
+			<h5><strong>feedback attributes</strong></h5>
+		</div>
+		<div id="attr-ch">			
+          	<%= render "charts/fb_attributes" %>	
+		</div>				
+	</div>
+	<div class="col-md-1">
+	</div>	
+	<div class="col-md-8">
+		<div id="report">
+			<ul class="nav nav-tabs">
+      			<li><a href="#chart" data-toggle="tab">chart</a></li>
+      			<li><a href="#table" data-toggle="tab">table</a></li>    
+    		</ul>    
+    		<div class="tab-content">
+        		<div class="tab-pane active" id="chart">
+					<div id= "promo-charts">
+					</div>
+				</div>
+				<div class="tab-pane" id="table">
+					<table class="table table-striped">
+						<tr id="table-names">
+							<th></th>
+						</tr>						
+					</table>
+				</div>
+			</div>
+		</div>
+			<%= submit_tag "Run", class: "btn btn-default btn-primary" %>
+			<button type="button" class="btn btn-default" id="print">Print report</button> 
+	</div>
+</div>
+<% end %>

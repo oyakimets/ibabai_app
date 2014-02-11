@@ -1,0 +1,14 @@
+<ol id="a-list">	
+   <% Feedback.all.each do |fb| %>
+    <% if fb.name != "new consumers" %>
+      <li>
+        <div class="col-md-9">              
+          <%= fb.name %>
+        </div>
+        <div class="col-md-3">
+          <%= check_box_tag "feedback_id[]", fb.id %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ol>

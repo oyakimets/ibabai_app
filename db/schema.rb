@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204102704) do
+ActiveRecord::Schema.define(version: 20140210153419) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -69,6 +69,22 @@ ActiveRecord::Schema.define(version: 20140204102704) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "charts", force: true do |t|
+    t.integer  "promoact_id"
+    t.integer  "brand_id"
+    t.integer  "prodcat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "opened"
+    t.integer  "code_1",      default: 0
+    t.integer  "code_2",      default: 0
+    t.integer  "code_3",      default: 0
+  end
+
+  add_index "charts", ["brand_id"], name: "index_charts_on_brand_id"
+  add_index "charts", ["prodcat_id"], name: "index_charts_on_prodcat_id"
+  add_index "charts", ["promoact_id"], name: "index_charts_on_promoact_id"
 
   create_table "cities", force: true do |t|
     t.string   "name"

@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
 		Brand.from_brands(self)
 	end
 
+	def a_brand_list
+		Brand.a_brands(self)
+	end
+
 	def seg_list
 		Segment.where("user_id = ? AND dropped IS ?", id, nil)
 	end

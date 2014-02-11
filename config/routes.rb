@@ -1,7 +1,7 @@
 IbabaiApp::Application.routes.draw do
   resources :promoacts do
     member do
-      patch :recall, :drop
+      patch :recall, :drop, :submit
       delete :del_cont_tag, :del_cont_pres, :del_cont_desc 
     end
   end
@@ -19,7 +19,9 @@ IbabaiApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets  
-  root 'promoacts#index'  
+  root 'promoacts#index'
+  match "/run", to: "charts#run", via: "post"
+  match "/analytics", to: "charts#show" , via: "get" 
   match "/cust_seg", to: "users#cust_seg", via: "get"
   match "/signin", to: "sessions#new", via: "get"
   match "/signup", to: "users#new", via: "get"
