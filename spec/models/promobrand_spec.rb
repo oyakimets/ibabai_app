@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Promobrand do
 	
-	let(:promoact) { FactoryGirl.create(:promoact) }
+	let(:promoact) { FactoryGirl.create(:promoact, user_id: 1) }
 	let(:brand) { FactoryGirl.create(:brand) }
 	let(:promobrand) { promoact.promobrands.build(brand_id: brand.id) }
 

@@ -15,7 +15,7 @@
 			<%= f.label :age_min, "from age" %>
 		</div>
 		<div class="col-md-4">
-			<%= f.select :age_min, (16..60), include_blank: "minus" %>
+			<%= f.select :age_min, (16..60), include_blank: "less than 16" %>
 		</div>
 	</section>
 	<section>
@@ -23,7 +23,7 @@
 			<%= f.label :age_max, "to age" %>
 		</div>
 		<div class="col-md-4">				
-			<%= f.select :age_max, (16..60), include_blank: "plus" %>
+			<%= f.select :age_max, (16..60), include_blank: "more than 60" %>
 		</div>
 	</section>
 	<section>

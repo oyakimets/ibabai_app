@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210153419) do
+ActiveRecord::Schema.define(version: 20140215180425) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.integer  "prodcat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "opened"
     t.integer  "code_1",      default: 0
     t.integer  "code_2",      default: 0
     t.integer  "code_3",      default: 0
@@ -110,6 +109,22 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "feedbacks", force: true do |t|
     t.string   "name"
@@ -189,6 +204,8 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.integer  "customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id"
+    t.integer  "segment_id"
   end
 
   add_index "promocustomers", ["customer_id"], name: "index_promocustomers_on_customer_id"
@@ -244,6 +261,8 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.integer  "store_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id"
+    t.integer  "category_id"
   end
 
   add_index "promostores", ["promoact_id", "store_id"], name: "index_promostores_on_promoact_id_and_store_id", unique: true
@@ -254,8 +273,8 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.string   "name"
     t.integer  "user_id"
     t.string   "gender"
-    t.integer  "age_min"
-    t.integer  "age_max"
+    t.integer  "age_min",    default: 15
+    t.integer  "age_max",    default: 61
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "income"
@@ -269,6 +288,9 @@ ActiveRecord::Schema.define(version: 20140210153419) do
     t.integer  "chain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lat"
+    t.string   "lon"
+    t.integer  "city_id"
   end
 
   create_table "users", force: true do |t|

@@ -35,6 +35,8 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem "highcharts-rails", "~> 3.0.0"
 gem "gon", "~> 5.0.1"
+gem	"delayed_job_active_record", "~> 4.0.0"
+gem "clockwork", "~> 0.7.1"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

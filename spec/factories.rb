@@ -71,4 +71,10 @@ FactoryGirl.define do
 		sequence(:name) { |n| "Fb_#{n}" }
 	end
 
+	factory :customer do 
+		gender "male"
+		age 33
+		income "mid"
+		city_id 1
+	end
 end

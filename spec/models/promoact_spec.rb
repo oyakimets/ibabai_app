@@ -28,6 +28,8 @@ describe Promoact do
   it { should respond_to(:brands) }
   it { should respond_to(:promorelations) }
   it { should respond_to(:past_promoacts) }
+  it { should respond_to(:promocustomers) }
+  it { should respond_to(:customers) }
 
   it { should be_valid }
 

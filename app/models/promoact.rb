@@ -2,7 +2,11 @@ class Promoact < ActiveRecord::Base
 	mount_uploader :cont_tag, ContTagUploader
 	mount_uploader :cont_pres, ContPresUploader
 	mount_uploader :cont_desc, ContDescUploader 
-	belongs_to :user	
+	belongs_to :user
+	has_many :promostores, dependent: :destroy
+	has_many :stores, through: :promostores
+	has_many :promocustomers, dependent: :destroy
+	has_many :customers, through: :promocustomers	
 	has_many :promorelations, dependent: :destroy
 	has_many :past_promoacts, through: :promorelations
 	has_many :promobrands, dependent: :destroy
@@ -21,7 +25,8 @@ class Promoact < ActiveRecord::Base
 	validates :brand_id, presence: true
 	validates :user_id, presence: true
 	validates :start_date, presence: true
-	validate  :finish_cannot_be_before_start 
+	validate  :finish_cannot_be_before_start
+	# validate :start_cannot_be_in_the_past 
 	
 
 	def start_cannot_be_in_the_past
@@ -76,5 +81,9 @@ class Promoact < ActiveRecord::Base
 
   	def self.a_promoacts(brand)
 		where("brand_id = ? AND status = ?", brand.id, 6)
-	end	
+	end
+
+	
+
+		
 end

@@ -18,6 +18,5 @@ class Segment < ActiveRecord::Base
 	def self.show_segments(promoact)
 		segment_ids = promoact.segment_ids
 		where("id IN (?)", segment_ids)
-	end
-	
+	end	
 end
