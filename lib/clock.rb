@@ -6,6 +6,11 @@ include Clockwork
 
 
 every 1.day, 'daily_customer.select', at: "00:00" do
+	Promoact.where("status = ?", 3).each do |pa|
+		if pa.start_date >= Date.today
+			pa.update_column(:status, 5)
+		end
+	end
 	Promoact.where("status = ?", 5).each do |promoact|
 		promoact.segments.each do |segment|
 			if segment.gender.blank?
@@ -31,7 +36,7 @@ every 1.day, 'daily_customer.select', at: "00:00" do
 	end	
 end
 
-every 5.minutes, 'daily_store.select' do
+every 1.day, 'daily_store.select', at: "01:00" do
 	Promoact.where("status = ?", 5).each do |promoact|
 		promoact.categories.each do |category|
 			if category.format_ids.empty?
@@ -57,3 +62,24 @@ every 5.minutes, 'daily_store.select' do
 		end
 	end	
 end
+
+every 1.hour, 'chart table update' do
+	
+	Promoact.where("status = ?", 5).each do |promoact|
+		feedback_arr = [:fc_1, :fc_2, :fc_3]
+		code_arr = [:code_1, :code_2, :code_3]
+		feedback_arr.each do |fc|
+			i=feedback_arr.index(fc)
+			feedback_data = CustLog.fb_register(promoact.id, fc).count 
+			Chart.find_by(promoact_id: promoact.id).update_column(code_arr[i], feedback_data)
+		end
+
+		if promoact.finish_date <= Date.today || Chart.code_3 >= promoact.contact_limit
+			promoact.update_column(:status, 6)
+		end
+	end
+end
+
+
+
+	

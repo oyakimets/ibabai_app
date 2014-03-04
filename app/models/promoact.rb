@@ -83,7 +83,23 @@ class Promoact < ActiveRecord::Base
 		where("brand_id = ? AND status = ?", brand.id, 6)
 	end
 
-	
+	def self.current_promo(user)
+		if user.admin?
+			account = Account.find_by(email: user.email)
+			user_ids = account.user_ids
+			where("user_id IN (?) AND status <> ?", user_ids, 6)
+		else
+			where("user_id = ? AND status <> ?", user.id, 6)
+		end
+	end
 
-		
+	def self.past_promo(user)
+		if user.admin?
+			account = Account.find_by(email: user.email)
+			user_ids = account.user_ids
+			where("user_id IN (?) AND status = ? AND dropped IS ?", user_ids, 6, nil)
+		else
+			where("user_id = ? AND status = ? AND dropped IS ?", user.id, 6, nil)
+		end
+	end		
 end

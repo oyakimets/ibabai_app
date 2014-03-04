@@ -18,12 +18,19 @@
  			 			
  		end
 
- 		100.times do 
+ 		100.times do |n|
+ 			email = "exmpl_#{n+1}@foobar.com" 
+ 			phone = "1234567"
+ 			password = "secret"
  			age = rand(16..60)
  			city_id = rand(1..4)
  			gender = ["male", "female"].sample
  			income = ["low", "mid", "high"].sample
  			Customer.create!(
+ 							email: email,
+ 							phone: phone,
+ 							password: password,
+ 							password_confirmation: password,
  							age: age,
  							gender: gender,
  							income: income,

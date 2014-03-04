@@ -1,10 +1,22 @@
 IbabaiApp::Application.routes.draw do
+ 
+  devise_for :customers
   resources :promoacts do
     member do
       patch :recall, :drop, :submit
       delete :del_cont_tag, :del_cont_pres, :del_cont_desc 
     end
   end
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do         
+      devise_scope :customer do
+        post 'registrations' => 'registrations#create', as: 'register'
+        post 'cessions' => 'cessions#create', as: 'login'
+        delete 'cessions' => 'cessions#destroy', as: 'logout'
+      end
+      resources :cust_logs, only: :create
+    end
+  end  
   resources :promocities, only: :destroy
   resources :promosegments, only: :destroy
   resources :promocats, only: :destroy

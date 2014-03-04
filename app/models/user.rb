@@ -59,12 +59,11 @@ class User < ActiveRecord::Base
 	end
 
 	def current_promo_list
-
-		Promoact.where("user_id = ? AND status <> ?", id, 6)		
+		Promoact.current_promo(self)				
 	end
 
 	def past_promo_list
-		Promoact.where("user_id = ? AND status = ? AND dropped IS ?", id, 6, nil)
+		Promoact.past_promo(self)
 	end
 
 	

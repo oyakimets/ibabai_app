@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215180425) do
+ActiveRecord::Schema.define(version: 20140302120244) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -101,6 +101,21 @@ ActiveRecord::Schema.define(version: 20140215180425) do
 
   add_index "clients", ["name"], name: "index_clients_on_name", unique: true
 
+  create_table "cust_logs", force: true do |t|
+    t.integer  "customer_id"
+    t.integer  "promoact_id"
+    t.integer  "store_id"
+    t.boolean  "fc_1",        default: false
+    t.boolean  "fc_2",        default: false
+    t.boolean  "fc_3",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "segment_id"
+    t.integer  "category_id"
+  end
+
+  add_index "cust_logs", ["promoact_id"], name: "index_cust_logs_on_promoact_id"
+
   create_table "customers", force: true do |t|
     t.string   "gender"
     t.integer  "age"
@@ -108,7 +123,24 @@ ActiveRecord::Schema.define(version: 20140215180425) do
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
+    t.string   "phone"
+    t.string   "device"
   end
+
+  add_index "customers", ["authentication_token"], name: "index_customers_on_authentication_token", unique: true
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true
+  add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false

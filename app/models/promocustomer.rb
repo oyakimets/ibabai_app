@@ -5,4 +5,5 @@ class Promocustomer < ActiveRecord::Base
 	validates :customer_id, presence: true
 	validates :city_id, presence: true
 	validates :segment_id, presence: true
+	
 end

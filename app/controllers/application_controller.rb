@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   include ChartsHelper
+  include CustomersHelper
   require 'active_support/core_ext/object/inclusion.rb'
-      
+
+  protected
+
+  	def json_request?
+  		request.format.json?
+  	end      
 end

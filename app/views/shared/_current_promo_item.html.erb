@@ -53,6 +53,9 @@
       <% when 5 %>
         <%= link_to "Recall", recall_promoact_path(current_promo_item), class: "btn btn-info btn-sm", method: :patch, data: { confirm: "Are you sure?"}, title: current_promo_item.name %>        
        <% end %>
+    <% else %>
+      <span><%= current_promo_item.user.name %></span><br>
+      <span><%= current_promo_item.user.tel1 %></span>
       <% end %>      
     </div>  
   </div>
