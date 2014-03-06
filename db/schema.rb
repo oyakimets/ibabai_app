@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304215641) do
+ActiveRecord::Schema.define(version: 20140305131344) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 20140304215641) do
   add_index "catchains", ["chain_id"], name: "index_catchains_on_chain_id"
 
   create_table "categories", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "dropped"
+    t.integer  "cat_count",  default: 0
   end
 
   create_table "catforms", force: true do |t|
@@ -311,6 +312,7 @@ ActiveRecord::Schema.define(version: 20140304215641) do
     t.datetime "updated_at"
     t.string   "income"
     t.boolean  "dropped"
+    t.integer  "cust_count", default: 0
   end
 
   create_table "stores", force: true do |t|

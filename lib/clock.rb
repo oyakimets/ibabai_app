@@ -63,7 +63,7 @@ every 1.day, 'daily_store.select', at: "01:00" do
 	end	
 end
 
-every 1.hour, 'chart table update' do
+every 1.day, 'chart table update', at: "01:30" do
 	
 	Promoact.where("status = ?", 5).each do |promoact|
 		feedback_arr = [:fc_1, :fc_2, :fc_3]
@@ -78,6 +78,40 @@ every 1.hour, 'chart table update' do
 			promoact.update_column(:status, 6)
 		end
 	end
+end
+
+every 5.minutes, 'daily_seg_cat_update' do	
+	
+	Segment.all.each do |segment|
+		if segment.gender.blank?
+			gender_ar = ["male", "female"]
+		else 
+			gender_ar = [segment.gender]
+		end
+		if segment.income.blank?
+			income_ar = ["low", "mid", "high"]
+		else
+			income_ar = [segment.income]
+		end		
+		cust_count = Customer.where("gender IN (?) AND age >= ? AND age <= ? AND income IN (?)", gender_ar, segment.age_min, segment.age_max, income_ar).count
+		segment.update_column(:cust_count, cust_count)		
+	end
+
+	Category.all.each do |category|
+		if category.format_ids.empty?
+			form_ar = Format.all.collect { |f| f.id }
+		else
+			form_ar = category.format_ids
+		end
+
+		if category.chain_ids.empty?
+			chain_ar = Chain.all.collect { |c| c.id }
+		else
+			chain_ar = category.chain_ids
+		end		
+		store_count = Store.where("format_id IN (?) AND chain_id IN (?)", form_ar, chain_ar).count
+		category.update_column(:cat_count, store_count)		
+	end		
 end
 
 

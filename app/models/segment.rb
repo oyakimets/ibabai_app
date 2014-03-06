@@ -6,7 +6,7 @@ class Segment < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: { scope: :user_id, message: " is already in use by you." }
 	validates :user_id, presence: true
 	validate :min_and_max_age
-	
+	after_commit :log_cust_count, on: :create
 	
 
 	def min_and_max_age
@@ -18,5 +18,21 @@ class Segment < ActiveRecord::Base
 	def self.show_segments(promoact)
 		segment_ids = promoact.segment_ids
 		where("id IN (?)", segment_ids)
-	end	
-end
+	end
+
+	
+	def log_cust_count		
+		if self.gender.blank?
+			gender_ar = ["male", "female"]
+		else 
+			gender_ar = [self.gender]
+		end
+		if self.income.blank?
+			income_ar = ["low", "mid", "high"]
+		else
+			income_ar = [self.income]
+		end						
+		cust_count = Customer.where("gender IN (?) AND age >= ? AND age <= ? AND income IN (?)", gender_ar, self.age_min, self.age_max, income_ar).count
+		self.update_column(:cust_count, cust_count)		
+	end		
+end	

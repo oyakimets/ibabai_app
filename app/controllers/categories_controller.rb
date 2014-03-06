@@ -20,7 +20,8 @@ class CategoriesController < ApplicationController
 				if !chain.empty?
 					@category.catchains.create(chain_id: chain) 
 				end
-			end					
+			end
+			@category.log_cat_count					
 			redirect_to new_category_url				
 		else
 			@cat_list_items = []

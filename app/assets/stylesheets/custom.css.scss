@@ -140,6 +140,11 @@ input {
 }
 
 /* segments */
+#count {
+	
+	float: right;
+}
+
 #my-segments {
 	h3 {
 		padding-left: 50px;
@@ -155,6 +160,9 @@ input {
 
 /* categories */
 #my-cats {
+	h3 {
+		padding-left: 50px;
+	}
 	
 	.cats {
 		list-style: none;

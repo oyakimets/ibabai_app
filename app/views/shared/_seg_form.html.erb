@@ -1,6 +1,6 @@
 <%= form_for(@segment) do |f| %>
 	<%= render 'shared/error_msg', object: f.object %>
-	<%= f.label :name, "segment name" %>
+	
 	<%= f.text_field :name, placeholder: "segment name" %>
 	<section>
 		<div class="col-md-8">
