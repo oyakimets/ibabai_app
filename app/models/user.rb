@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
+	after_create :def_seg_cat
 	validates :name, presence: true
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
@@ -64,6 +65,11 @@ class User < ActiveRecord::Base
 
 	def past_promo_list
 		Promoact.past_promo(self)
+	end
+
+	def def_seg_cat
+		self.segments.create(name: "All customers")
+		self.categories.create(name: "All stores", cat_count: Store.all.count)
 	end
 
 	
