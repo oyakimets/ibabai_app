@@ -39,10 +39,10 @@ end
 every 1.day, 'daily_store.select', at: "01:00" do
 	Promoact.where("status = ?", 5).each do |promoact|
 		promoact.categories.each do |category|
-			if category.format_ids.empty?
-				form_ar = Format.all.collect { |f| f.id }
+			if category.formatt_ids.empty?
+				form_ar = Formatt.all.collect { |f| f.id }
 			else
-				form_ar = category.format_ids
+				form_ar = category.formatt_ids
 			end
 
 			if category.chain_ids.empty?
@@ -55,7 +55,7 @@ every 1.day, 'daily_store.select', at: "01:00" do
 			else
 				cities_ar = promoact.city_ids
 			end							
-			promo_store = Store.where("format_id IN (?) AND chain_id IN (?) AND city_id IN (?)", form_ar, chain_ar, cities_ar)
+			promo_store = Store.where("formatt_id IN (?) AND chain_id IN (?) AND city_id IN (?)", form_ar, chain_ar, cities_ar)
 			promo_store.each do |store|
 				promoact.promostores.create!( store_id: store.id, city_id: store.city_id, category_id: category.id )
 			end
@@ -98,8 +98,8 @@ every 5.minutes, 'daily_seg_cat_update' do
 	end
 
 	Category.all.each do |category|
-		if category.format_ids.empty?
-			form_ar = Format.all.collect { |f| f.id }
+		if category.formatt_ids.empty?
+			form_ar = Formatt.all.collect { |f| f.id }
 		else
 			form_ar = category.format_ids
 		end
@@ -109,7 +109,7 @@ every 5.minutes, 'daily_seg_cat_update' do
 		else
 			chain_ar = category.chain_ids
 		end		
-		store_count = Store.where("format_id IN (?) AND chain_id IN (?)", form_ar, chain_ar).count
+		store_count = Store.where("formatt_id IN (?) AND chain_id IN (?)", form_ar, chain_ar).count
 		category.update_column(:cat_count, store_count)		
 	end		
 end

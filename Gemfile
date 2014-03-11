@@ -39,6 +39,8 @@ gem	"delayed_job_active_record", "~> 4.0.0"
 gem "clockwork", "~> 0.7.1"
 gem "devise"
 gem "devise-token_authenticatable"
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'ransack', '~> 1.1.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

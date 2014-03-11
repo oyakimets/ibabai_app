@@ -44,7 +44,7 @@ FactoryGirl.define do
 		user
 	end
 
-	factory :format do
+	factory :formatt do
 		sequence(:name) { |n| "Format_#{n}" }
 	end
 

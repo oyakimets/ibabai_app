@@ -165,10 +165,10 @@
                     <div id="collapseOne<%= category.id %>" class="panel-collapse collapse">
                       <div class= "panel-body" id="my-cats">    
                         <div class="formats">
-                          <% if category.format_feed.any? %>
+                          <% if category.formatt_feed.any? %>
                             <h4>Formats</h4>
                             <ol class = "formats-list">
-                              <% category.format_feed.each do |item| %>
+                              <% category.formatt_feed.each do |item| %>
                                 <li><%= item.name %></li>
                               <% end %>
                             </ol>

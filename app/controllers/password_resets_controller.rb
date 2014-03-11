@@ -20,7 +20,7 @@ class PasswordResetsController < ApplicationController
 			redirect_to new_password_reset_path  
 		elsif @user.update_attributes(user_params)
 			flash[:success] = "Password has been reset!"
-			sign_in @user
+			log_in @user
 			redirect_to root_url
 		else
 			flash.now[:error] = "Password change failed! Try again or contact us for support"

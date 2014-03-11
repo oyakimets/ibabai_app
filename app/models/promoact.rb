@@ -1,7 +1,8 @@
 class Promoact < ActiveRecord::Base
 	mount_uploader :cont_tag, ContTagUploader
 	mount_uploader :cont_pres, ContPresUploader
-	mount_uploader :cont_desc, ContDescUploader 
+	mount_uploader :cont_desc, ContDescUploader
+	scope :submitted, -> { where( status: 3) } 
 	belongs_to :user
 	has_many :promostores, dependent: :destroy
 	has_many :stores, through: :promostores

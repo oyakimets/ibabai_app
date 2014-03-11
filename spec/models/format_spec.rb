@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Format do
-  before { @format = Format.create(name: "Fuckers") }
-  subject { @format }
+describe Formatt do
+  before { @formatt = Formatt.create(name: "Fuckers") }
+  subject { @formatt }
 
   it { should respond_to(:name) }
   it { should respond_to(:categories) }

@@ -11,7 +11,7 @@ describe Category do
 	its(:user) { should eq user }
 	it { should respond_to(:catforms) }
 	it { should respond_to(:catchains) }
-	it { should respond_to(:formats) }
+	it { should respond_to(:formatts) }
 	it { should respond_to(:chains) }
 	it { should respond_to(:promoacts) }
 	it { should respond_to(:promocats)}

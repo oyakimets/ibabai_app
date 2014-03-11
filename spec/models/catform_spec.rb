@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Catform do
 	let(:category) { FactoryGirl.create(:category, user_id: 1) }
-	let(:format) { FactoryGirl.create(:format) }
-	let(:catform) { category.c_formats.build(format_id: format.id) }
+	let(:formatt) { FactoryGirl.create(:formatt) }
+	let(:catform) { category.c_formats.build(formatt_id: formatt.id) }
 
 	subject { catform }
 
@@ -12,9 +12,9 @@ describe Catform do
 	describe "category methods" do
 
 		it { should respond_to(:category) }
-		it { should respond_to(:format) }
+		it { should respond_to(:formatt) }
 		its(:category) { should eq category }
-		its(:format) { should eq format }
+		its(:formatt) { should eq formatt }
 	end
 
 	describe "when cat id is not present" do
@@ -23,7 +23,7 @@ describe Catform do
 	end
 
 	describe "when format id is not present" do
-		before { catform.format_id = nil }
+		before { catform.formatt_id = nil }
 		it { should_not be_valid }
 	end
 end

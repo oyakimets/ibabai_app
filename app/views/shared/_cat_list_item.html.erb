@@ -11,10 +11,10 @@
     <div id="collapseOne<%= cat_list_item.id %>" class="panel-collapse collapse">
       <div class= "panel-body">  	 
         <div class="formats">
-        <% if cat_list_item.format_feed.any? %>
+        <% if cat_list_item.formatt_feed.any? %>
           <h4>Formats</h4>
           <ol class = "formats-list">
-            <% cat_list_item.format_feed.each do |item| %>
+            <% cat_list_item.formatt_feed.each do |item| %>
                 <li><%= item.name %></li>
             <% end %>
           </ol>

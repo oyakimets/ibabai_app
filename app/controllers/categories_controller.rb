@@ -10,9 +10,9 @@ class CategoriesController < ApplicationController
 		@category = current_user.categories.build(category_params)
 		
 		if @category.save
-			params[:formats][:id].each do |format|
-				if !format.empty?
-					@category.catforms.create(format_id: format) 
+			params[:formatts][:id].each do |formatt|
+				if !formatt.empty?
+					@category.catforms.create(formatt_id: formatt) 
 				end
 			end
 

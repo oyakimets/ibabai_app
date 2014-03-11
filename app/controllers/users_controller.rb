@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:new, :create, :index]
+  before_action :adm_user, only: [:new, :create, :index]
 
   def index
     @users = user_account.user_list    
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = user_account.users.build(user_params)
+    @user = user_account.users.build(user_params)    
   	if @user.save
       @user.send_password_reset    
       flash[:success] = "The new user was created."
@@ -47,17 +47,15 @@ class UsersController < ApplicationController
   private 
 
   	def user_params
-  		params.require(:user).permit(:name, :email, :tel1, :tel2, :client_id, :password, :password_confirmation)
+  		params.require(:user).permit(:name, :email, :tel1, :tel2, :client_id, :password, :password_confirmation, :admin)
   	end
     
-    def admin_user
+    def adm_user
       redirect_to(signout_url) unless current_user.admin?
     end
 
     def correct_user
       @user = User.find(params[:id])
       redirect_to(signout_url) unless current_user?(@user)
-    end
-
-       
+    end       
 end

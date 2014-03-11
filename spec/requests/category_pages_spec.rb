@@ -8,7 +8,7 @@ describe "Category pages" do
 		let(:user) { FactoryGirl.create(:user, client_id: 1, account_id: 1) }
 
 		before do
-			FactoryGirl.create(:format, name: "My-format")
+			FactoryGirl.create(:formatt, name: "My-format")
 			FactoryGirl.create(:chain, name: "My-chain")
 			sign_in user
 			visit new_category_path 
@@ -29,7 +29,7 @@ describe "Category pages" do
 			before do
 				fill_in "trade category name", with: "My-category"
 				find("#chains_id").select("My-chain")
-				find("#formats_id").select("My-format")				
+				find("#formatts_id").select("My-format")				
 			end
 
 			it "should create category" do

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :segments
 	has_many :promoacts
 	has_many :categories
+	scope :accounts, -> { where(admin: true) }
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 	has_secure_password
-	validates :password, length: { minimum: 6 } 
+	validates :password, on: :create, length: { minimum: 6 } 
 	VALID_TEL_REGEX = /\d{12}/
 	validates :tel1, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }
 	validates :tel2, presence: true, length: { is: 12 }, format: { with: VALID_TEL_REGEX }

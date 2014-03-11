@@ -4,13 +4,13 @@ class Category < ActiveRecord::Base
 	has_many :promoacts, through: :promocats
 	has_many :catforms, dependent: :destroy
 	has_many :catchains, dependent: :destroy	
-	has_many :formats, through: :catforms
+	has_many :formatts, through: :catforms
 	has_many :chains, through: :catchains
 	validates :name, presence: true, uniqueness: { scope: :user_id, message: " is already in use by you." }
 	validates :user_id, presence: true	
 
-	def format_feed
-		Format.from_formats(self)
+	def formatt_feed
+		Formatt.from_formatts(self)
 	end	
 
 	def chain_feed
@@ -23,10 +23,10 @@ class Category < ActiveRecord::Base
 	end
 
 	def log_cat_count
-		if self.format_ids.empty?
-			form_ar = Format.all.collect { |f| f.id }
+		if self.formatt_ids.empty?
+			form_ar = Formatt.all.collect { |f| f.id }
 		else
-			form_ar = self.format_ids
+			form_ar = self.formatt_ids
 		end
 
 		if self.chain_ids.empty?
@@ -34,7 +34,7 @@ class Category < ActiveRecord::Base
 		else
 			chain_ar = self.chain_ids
 		end		
-		store_count = Store.where("format_id IN (?) AND chain_id IN (?)", form_ar, chain_ar).count
+		store_count = Store.where("formatt_id IN (?) AND chain_id IN (?)", form_ar, chain_ar).count
 		self.update_column(:cat_count, store_count)		
 	end			
 end

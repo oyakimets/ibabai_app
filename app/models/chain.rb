@@ -1,4 +1,5 @@
 class Chain < ActiveRecord::Base
+	has_many :stores
 	has_many :catchains
 	has_many :categories, through: :catchains
 	validates :name, presence:true

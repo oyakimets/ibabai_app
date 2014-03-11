@@ -4,10 +4,10 @@
 	<%= fields_for(@category.catforms.build) do |cf| %>	
 	<section>
 		<div class="col-md-6">
-			<%= cf.label :formats, "select formats" %>
+			<%= cf.label :formatts, "select formats" %>
 		</div>
 		<div class="col-md-6">
-			<%= collection_select(:formats, :id, Format.all, :id, :name, { include_blank: "all" }, { multiple: true }) %>
+			<%= collection_select(:formatts, :id, Formatt.all, :id, :name, { include_blank: "all" }, { multiple: true }) %>
 		</div>
 	</section>
 	<% end %>
