@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	belongs_to :account
 	belongs_to :client
+	has_many :help_desks
 	has_many :brands
 	has_many :segments
 	has_many :promoacts

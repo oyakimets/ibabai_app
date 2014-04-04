@@ -1,4 +1,125 @@
 <% provide(:title, 'support') %>
+<div class="row">
+	<div class= "col col-md-6" id="htw">
+		<h3>How this works</h3>
+    <div class="row" id="splitter">
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), general_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), seg_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), cat_page_path %>
+      </div>
+    </div>
+    <div class="row" id="splitter">
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), status_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), na_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), ana_page_path %>
+      </div>
+    </div>
+    <div class="row" id="splitter">
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), pro_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), com_page_path %>
+      </div>
+      <div class="col col-md-4">
+        <%= link_to image_tag("support/icon.jpg", id: "i1"), specs_page_path %>
+      </div>
+    </div>
+	</div>
+	<div class= "col col-md-3" id="faq">
+		<h3>FAQ</h3>
+		<div class="panel-group" id="accordion">
+  			<div class="panel panel-default">
+    			<div class="panel-heading">
+      				<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          					Collapsible Group Item #1
+        				</a>
+      				</h4>
+    			</div>
+    			<div id="collapseOne" class="panel-collapse collapse">
+      				<div class="panel-body">
+        				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin 
+      				</div>
+    			</div>
+  			</div>
+  			<div class="panel panel-default">
+    			<div class="panel-heading">
+      				<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          					Collapsible Group Item #2
+        				</a>
+      				</h4>
+    			</div>
+    			<div id="collapseTwo" class="panel-collapse collapse">
+      				<div class="panel-body">
+        				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin 
+      				</div>
+    			</div>
+  			</div>
+  			<div class="panel panel-default">
+    			<div class="panel-heading">
+      				<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          					Collapsible Group Item #3
+        				</a>
+      				</h4>
+    			</div>
+    			<div id="collapseThree" class="panel-collapse collapse">
+      				<div class="panel-body">
+        				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin 
+      				</div>
+    			</div>
+  			</div>
+		</div>
+	</div>
+	<div class= "col col-md-3" id="news">
+		<h3>News and updates</h3>
+      <div id="newsfeed">
+      </div>
+      <h4 id="cp_title">Contact us</h4>
+      <div class="row">
+        <div class="col col-md-6">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="cp_btn">@mail</button>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Enter your message</h4>
+                  </div>
+                    <%= render "support/help_form" %>
+                </div>
+              </div>
+            </div>  
 
-<p>This is a user support hub.</p>
-	
+        </div>
+        <div class="col col-md-6">
+          <div id="cp_btn">
+           <%= link_to "Call back", help_desks_path(help_desk: { callback: true }), class: "btn btn-default", method: :post %>
+         </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-6">
+          <button type="button" class="btn btn-default" id="cp_btn">IM</button> 
+        </div>
+        <div class="col col-md-6">
+        </div>
+      </div>
+     <span>Our contacts:</span><br>
+     <span>Address: NY., Ibabai Road 123</span><br>
+     <span>Phone: +380 123 456789</span>     
+	</div>
+</div>
+

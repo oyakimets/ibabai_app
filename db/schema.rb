@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310134013) do
+ActiveRecord::Schema.define(version: 20140315133205) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -200,6 +200,14 @@ ActiveRecord::Schema.define(version: 20140310134013) do
 
   create_table "formatts", force: true do |t|
     t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "help_desks", force: true do |t|
+    t.string   "message"
+    t.boolean  "callback"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

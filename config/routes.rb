@@ -32,7 +32,9 @@ IbabaiApp::Application.routes.draw do
   resources :brands, only: [:create, :update, :destroy]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :password_resets  
+  resources :password_resets
+  resources :help_desks  
+   
   root 'promoacts#index'
   match "/run", to: "charts#run", via: "post"
   match "/analytics", to: "charts#show" , via: "get" 
@@ -41,6 +43,15 @@ IbabaiApp::Application.routes.draw do
   match "/signup", to: "users#new", via: "get"
   match "/help", to: "support#help", via: "get"
   match '/signout', to: 'sessions#destroy', via: "delete"
+  match '/general_page', to: "support#general_page", via: "get"
+  match '/status_page', to: "support#status_page", via: "get"
+  match '/seg_page', to: "support#seg_page", via: "get"
+  match '/cat_page', to: "support#cat_page", via: "get"
+  match '/na_page', to: "support#na_page", via: "get"
+  match '/ana_page', to: "support#ana_page", via: "get"
+  match '/pro_page', to: "support#pro_page", via: "get"
+  match '/com_page', to: "support#com_page", via: "get"
+  match '/specs_page', to: "support#specs_page", via: "get"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

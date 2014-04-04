@@ -32,7 +32,7 @@
 								<%= pc.name %>
 							</div>
 							<div class="col-md-6">
-								<%= link_to "delete", @promoact.promocities.find_by(city_id: pc.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>						
+								<%= link_to "delete", @promoact.promocities.find_by(city_id: pc.id) , class: "btn btn-link", method: :delete, data: { confirm: "Are you sure?"} %>						
 							</div>
 						</li>
 					<% end %>
@@ -47,7 +47,7 @@
 								<%= ps.name %>
 							</div>
 							<div class="col-md-6">
-								<%= link_to "delete", @promoact.promosegments.find_by(segment_id: ps.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>					
+								<%= link_to "delete", @promoact.promosegments.find_by(segment_id: ps.id) , class: "btn btn-link", method: :delete, data: { confirm: "Are you sure?"} %>					
 							</div>
 						</li>
 					<% end %>
@@ -62,7 +62,7 @@
 								<%= pc.name %>
 							</div>
 							<div class="col-md-6">
-								<%= link_to "delete", @promoact.promocats.find_by(category_id: pc.id) , class: "btn btn-link", method: :delete,data: { confirm: "Are you sure?"} %>	
+								<%= link_to "delete", @promoact.promocats.find_by(category_id: pc.id) , class: "btn btn-link", method: :delete, data: { confirm: "Are you sure?"} %>	
 							</div>
 						</li>
 					<% end %>

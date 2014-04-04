@@ -1,0 +1,13 @@
+<div class="modal-body">
+	<%= form_for(@help_desk) do |f| %>
+		<%= render 'shared/error_msg', object: f.object %>
+		<div class="field">
+			<%= f.text_area :message, placeholder: "Enter your mail here..." %>
+		</div>
+		<div class="btn-send">
+			<%= f.submit "Send", class: "btn btn-lg btn-primary" %>
+		</div>
+	<% end %>		
+</div>
+	
+                    

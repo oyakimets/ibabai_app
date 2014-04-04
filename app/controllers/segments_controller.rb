@@ -4,6 +4,7 @@ class SegmentsController < ApplicationController
 	def create
 		@segment = current_user.segments.build(segment_params)
 		if @segment.save
+			@segment.log_cust_count
 			redirect_to cust_seg_url
 		else
 			@seg_list_items = []
