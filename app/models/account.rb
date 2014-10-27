@@ -9,7 +9,7 @@ class Account < ActiveRecord::Base
 	after_create :add_account_to_users 
 
 	def user_list
-		User.where("account_id = ? AND admin = ?", id, false)
+		User.where("account_id = ?", id)
 	end
 
 	def add_account_to_users

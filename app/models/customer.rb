@@ -11,6 +11,9 @@ class Customer < ActiveRecord::Base
 	validates :gender, presence: true
 	validates :age, presence: true
 	has_many :promocustomers
+  has_many :transactions
+  has_many :cust_logs
+  has_many :clients, through: :stoplists
 	has_many :promoacts, through: :promocustomers
-	
+   
 end

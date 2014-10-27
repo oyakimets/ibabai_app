@@ -13,10 +13,15 @@ IbabaiApp::Application.routes.draw do
     namespace :v1 do         
       devise_scope :customer do
         post 'registrations' => 'registrations#create', as: 'register'
-        post 'cessions' => 'cessions#create', as: 'login'
-        delete 'cessions' => 'cessions#destroy', as: 'logout'
+        put 'registrations' => 'registrations#update', as: 'update'
+        post 'cessions' => 'cessions#create', as: 'login'              
       end
+      post 'validations' => 'validations#validate_customer', as: 'validate' 
+      post 'debits' => 'debits#validate_po', as: 'validate_po'
+      post 'stoplists' => 'stoplists#block', as: 'block'
+      delete 'stoplists' => 'stoplists#unblock', as: 'unblock'     
       resources :cust_logs, only: :create
+      resources :transactions, only: :create        
     end
   end  
   resources :promocities, only: :destroy

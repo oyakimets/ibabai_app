@@ -1,10 +1,15 @@
 class Api::V1::CustLogsController < ApplicationController
 	skip_before_action :verify_authenticity_token, if: :json_request?	
-	#before_action :authenticate_customer!		
-	respond_to :json
+	before_action :authenticate_customer!		
+	respond_to :json, :xml
 
 	def create
-		respond_with CustLog.create(cust_log_params), location: nil			
+		cust_log = current_customer.cust_logs.build(cust_log_params)
+		if cust_log.save			
+			render status: 200, json: { success: true, info: "registered", data:{balance: Customer.find_by(id: cust_log.customer_id).balance} }
+		else 
+			render status: :unprocessable_entity, json: { success: false, info: "registration failed" }
+		end		
 	end	
 	
 	private

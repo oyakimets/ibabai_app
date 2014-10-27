@@ -1,6 +1,7 @@
 class CustLog < ActiveRecord::Base
-	
+	belongs_to :customer
 	after_commit :log_seg_cat, on: :create
+
 
 	def log_seg_cat
 		self.update_attributes(segment_id: Promocustomer.where("customer_id = ? AND promoact_id = ?", self.customer_id, self.promoact_id).first.segment_id,
@@ -9,5 +10,5 @@ class CustLog < ActiveRecord::Base
 
 	def self.fb_register(promoact, feedback)
 		where("promoact_id = ? and #{feedback.to_s} = ?", promoact, true)
-	end
+	end	
 end

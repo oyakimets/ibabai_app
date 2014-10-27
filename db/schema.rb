@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315133205) do
+ActiveRecord::Schema.define(version: 20140721122628) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20140315133205) do
     t.string   "authentication_token"
     t.string   "phone"
     t.string   "device"
+    t.integer  "balance",                default: 0
   end
 
   add_index "customers", ["authentication_token"], name: "index_customers_on_authentication_token", unique: true
@@ -356,6 +357,15 @@ ActiveRecord::Schema.define(version: 20140315133205) do
     t.integer  "cust_count", default: 0
   end
 
+  create_table "stoplists", force: true do |t|
+    t.integer  "customer_id"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stoplists", ["customer_id", "client_id"], name: "index_stoplists_on_customer_id_and_client_id", unique: true
+
   create_table "stores", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -366,6 +376,18 @@ ActiveRecord::Schema.define(version: 20140315133205) do
     t.string   "lat"
     t.string   "lon"
     t.integer  "city_id"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "customer_id"
+    t.string   "agent_name"
+    t.integer  "agent_id"
+    t.integer  "amount"
+    t.string   "dc_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone"
+    t.string   "account"
   end
 
   create_table "users", force: true do |t|

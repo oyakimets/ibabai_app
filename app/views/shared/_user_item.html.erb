@@ -1,0 +1,8 @@
+<li id="<%= user_item.id %>">
+	<h4><%= user_item.name %></h4><br>
+	<span>Company: <%= Client.find_by(id: user_item.client_id).name %></span><br>
+	<span><%= user_item.email %></span><br>
+	<span>phones: <%= user_item.tel1 %>, <%= user_item.tel2 %></span>
+</li>
+
+			

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :adm_user, only: [:new, :create, :index]
 
   def index
-    @users = user_account.user_list    
+    @user_items = user_account.user_list    
   end
         
   def show  	
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = user_account.users.build(user_params)    
   	if @user.save
-      @user.send_password_reset    
+      #@user.send_password_reset    
       flash[:success] = "The new user was created."
       redirect_to root_url
   	else
