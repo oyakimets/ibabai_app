@@ -33,8 +33,8 @@ IbabaiApp::Application.configure do
     address:   "smtp.gmail.com",
     domain:    "gmail.com",
     port:       587,
-    user_name: 'oleg.yakimets@gmail.com',
-    password:  'iranal01',
+    user_name: '**************',
+    password:  '*********',
     authentication: 'plain',
     enable_starttls_auto: true
   }
